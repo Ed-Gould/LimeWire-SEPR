@@ -64,6 +64,7 @@ public class Map {
 
                 for (Coords moveSquare: moveSquares){
                     if (isNewSquare(visitedSquares, moveSquare) && isValidSquare(moveSquare)){
+                        System.out.println(moveSquare);
                         newSquares.add(moveSquare);
                     }
                     visitedSquares.add(moveSquare);
@@ -76,6 +77,10 @@ public class Map {
 
     public Square[][] getGrid(){
         return this.grid;
+    }
+
+    public Square getSquare(int x, int y){
+        return this.grid[x][y];
     }
 
     public Ship getShip(Coords coordinates){

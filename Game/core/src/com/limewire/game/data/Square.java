@@ -30,6 +30,10 @@ public class Square {
         }
     }
 
+    public void setShip(Ship ship){
+        this.ship = ship;
+    }
+
     public void setPathable(String type){
         if (type.equals("water")){
             this.isPathable = true;

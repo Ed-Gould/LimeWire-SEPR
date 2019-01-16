@@ -1,11 +1,8 @@
 package com.limewire.game.data;
 
-import com.badlogic.gdx.graphics.Texture;
-
 public class Ship {
     private int x, y, health, moveSpeed, movesLeft;
     private String team;
-    private Texture texture;
 
     public Ship(int x, int y, int health, String team) {
         this.x = x;
@@ -14,13 +11,6 @@ public class Ship {
         this.team = team;
         this.moveSpeed = 3;
         this.movesLeft = moveSpeed;
-
-        if (team.equals("p")){
-            this.texture = new Texture("32ship.png");
-        }
-        else{
-            this.texture = new Texture("32enemyShip.png");
-        }
     }
 
     public int getX(){
@@ -45,10 +35,6 @@ public class Ship {
 
     public int getMoveSpeed(){
         return this.moveSpeed;
-    }
-
-    public Texture getTexture(){
-        return this.texture;
     }
 
     public int getMovesLeft(){

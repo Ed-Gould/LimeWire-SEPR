@@ -17,10 +17,6 @@ but it would be cleaner to do entity.moveLeft, and let the entity class deal wit
 public class Coords {
     int x, y;
 
-    public Coords(){
-
-    }
-
     public Coords(int x, int y){
         this.x = x;
         this.y = y;
@@ -30,7 +26,16 @@ public class Coords {
         return new int[] {x, y};
     }
 
-
+    public boolean equals(Object other){
+        if (other == this){
+            return true;
+        }
+        if (!(other instanceof Coords)){
+            return false;
+        }
+        Coords coords = (Coords) other;
+        return (coords.x == this.x && coords.y == this.y);
+    }
 
     public int getX() {
         return x;
@@ -46,22 +51,5 @@ public class Coords {
 
     public void setY(int y) {
         this.y = y;
-    }
-
-    public void setCoords(int x, int y){
-        this.x = x;
-        this.y = y;
-    }
-
-    @Override
-    public boolean equals(Object other){
-        if (other == this){
-            return true;
-        }
-        if (!(other instanceof Coords)){
-            return false;
-        }
-        Coords coords = (Coords) other;
-        return (coords.x == this.x && coords.y == this.y);
     }
 }
