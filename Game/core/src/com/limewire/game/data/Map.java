@@ -64,7 +64,6 @@ public class Map {
 
                 for (Coords moveSquare: moveSquares){
                     if (isNewSquare(visitedSquares, moveSquare) && isValidSquare(moveSquare)){
-                        System.out.println(moveSquare);
                         newSquares.add(moveSquare);
                     }
                     visitedSquares.add(moveSquare);

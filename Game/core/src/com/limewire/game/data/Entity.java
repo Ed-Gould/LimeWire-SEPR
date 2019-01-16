@@ -14,5 +14,8 @@ you could not have the methods on Entity, and instead do entity.getCoords.moveLe
 but it would be cleaner to do entity.moveLeft, and let the entity class deal with calling Coords
 */
 
-public class Entity {
+public abstract class Entity extends Coords{
+    private int x, y;
+
+
 }
