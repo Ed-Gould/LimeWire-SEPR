@@ -8,14 +8,17 @@ import java.util.Set;
 
 public class Test {
     public static void main(String[] args){
-        Set<Integer> e = new HashSet<Integer>();
-        Set<Integer> e2 = new HashSet<Integer>();
+        Set<Coords> moveSquares = new HashSet<Coords>();
+        moveSquares.add(new Coords(2,3));
+        moveSquares.add(new Coords(0,0));
+        moveSquares.add(new Coords(1,0));
+        moveSquares.add(new Coords(0,1));
 
-        System.out.println(e);
-        System.out.println(e2);
-        e2.add(1);
-        System.out.println(e);
-        System.out.println(e2);
+        Coords selection = new Coords(2,3);
+        Coords move = new Coords(2, 3);
+
+        System.out.println(selection.equals(move));
+
     }
 }
 /*

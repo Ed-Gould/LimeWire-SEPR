@@ -18,21 +18,22 @@ import java.util.Set;
 public class Game extends ApplicationAdapter {
 	SpriteBatch batch;
 	private OrthographicCamera camera;
-	Texture gridTex, shipTex, selectionTex, moveDisplayTex;
+	Texture gridTex, selectionTex, moveDisplayTex;
 	int squareSize = 34; // Pixel size of a square (including the black border)
 	public static final int gridWidth = 8; // Width of the grid
 	public static final int gridHeight = 8; // Height of the grid
 
+	// Selection variables
 	int selectionX = 0;
 	int selectionY = 0;
 	boolean showSelection = false;
-
+	boolean isShipSelected = false;
 	Set<Coords> moveSquares = new HashSet<Coords>();
 
-	boolean isShipSelected = false;
-
+	// Map and contents
 	Map map;
-	ArrayList<Ship> ships;
+	ArrayList<Ship> playerShips;
+	ArrayList<Ship> enemyShips;
 
 	// These variables are the offset of the camera to show the corner map in the bottom left of the screen
 	float cameraOffsetX;
@@ -54,13 +55,13 @@ public class Game extends ApplicationAdapter {
 
 		// Load textures
 		gridTex = new Texture("32gridSquare.png");
-		shipTex = new Texture("32ship.png");
 		selectionTex = new Texture("32selection.png");
 		moveDisplayTex = new Texture("32moveDisplay.png");
 
 		// Create data structures for map and list of ships
 		map = new Map(); // Map by default is all water
-		ships = new ArrayList<Ship>();
+		playerShips = new ArrayList<Ship>();
+		enemyShips = new ArrayList<Ship>();
 
 
 		// Add land for testing
@@ -72,12 +73,15 @@ public class Game extends ApplicationAdapter {
 		map.grid[4][5] = new Square("land");
 
 		// Add some placeholder ships (for testing)
-		//ships.add(new Ship(0, 0, 0, "p"));
-		ships.add(new Ship(1,1,0,"p"));
-
+		playerShips.add(new Ship(1,1,1,"player"));
+		playerShips.add(new Ship(3,4,1,"player"));
+		enemyShips.add(new Ship(6,6, 1, "e"));
 
 		// Add data to map squares for where ships are
-		for (Ship ship: ships){
+		for (Ship ship: playerShips){
+			map.getGrid()[ship.getX()][ship.getY()].ship = ship;
+		}
+		for (Ship ship: enemyShips){
 			map.getGrid()[ship.getX()][ship.getY()].ship = ship;
 		}
 	}
@@ -97,14 +101,6 @@ public class Game extends ApplicationAdapter {
 		batch.end();
 
         moveSquares = getMoveSquares();
-        System.out.println("===================");
-        for (Coords coord: moveSquares){
-            System.out.print("(");
-            System.out.print(coord.getX());
-            System.out.print(",");
-            System.out.print(coord.getY());
-            System.out.print(")");
-        }
         isShipSelected = isShipSelected();
         handleInput();
     }
@@ -115,8 +111,20 @@ public class Game extends ApplicationAdapter {
 
 		// Handle cases where a ship is selected
 		if (isShipSelected()){
+			// Move the ship to a new location
 			if (map.isValidSquare(coordinates)){
 				moveSelectedShip(coordinates);
+			}
+
+			// If the location contains an enemy ship (to attack)
+			else if (map.getShip(coordinates) != null){
+				Ship newSelectedShip = map.getShip(coordinates);
+				// If the new location contains an enemy ship
+				if (!newSelectedShip.getTeam().equals("player")){
+					if (getSelectedShip().nextToShip(newSelectedShip)){
+						deleteShip(newSelectedShip);
+					}
+				}
 			}
 			showSelection = false;
 		}
@@ -132,25 +140,49 @@ public class Game extends ApplicationAdapter {
 	}
 
 	public void moveSelectedShip(Coords coordinates) {
-		for (Ship ship : ships) {
-			if (ship.getX() == selectionX && ship.getY() == selectionY) {
-				map.getGrid()[ship.getX()][ship.getY()].ship = null;
+		Ship ship = getSelectedShip();
+		for (Coords moveSquare : moveSquares) {
+			if (coordinates.equals(moveSquare)) {
+				map.deleteShip(coordinates);
 				ship.setX(coordinates.getX());
 				ship.setY(coordinates.getY());
-				map.getGrid()[ship.getX()][ship.getY()].ship = ship;
+				map.setShip(ship);
 				return;
 			}
 		}
 	}
 
+	public void deleteShip(Ship ship){
+		map.deleteShip(ship.getCoords());
+		enemyShips.remove(ship);
+	}
+
 	public boolean isShipSelected(){
-		for (Ship ship : ships){
+		for (Ship ship : playerShips){
 			if (ship.getX() == selectionX && ship.getY() == selectionY && showSelection){
 				return true;
 			}
 		}
 		return false;
 	}
+
+	public Ship getSelectedShip(){
+		for (Ship ship : playerShips){
+			if (ship.getX() == selectionX && ship.getY() == selectionY && showSelection){
+				return ship;
+			}
+		}
+		return null;
+	}
+
+	public Set<Coords> getMoveSquares(){
+		if (showSelection && isShipSelected()) {
+			return map.getPossibleMoves(map.getShip(new Coords(selectionX, selectionY)));
+		}
+		return new HashSet<Coords>();
+	}
+
+
 
 	public void drawAssets(){
 		drawGrid();
@@ -159,13 +191,6 @@ public class Game extends ApplicationAdapter {
         drawSelectionSquare();
         drawMoveDisplay();
 	}
-
-	public Set<Coords> getMoveSquares(){
-        if (showSelection && isShipSelected()) {
-            return map.getPossibleMoves(map.getShip(new Coords(selectionX, selectionY)));
-        }
-        return new HashSet<Coords>();
-    }
 
 	public void drawGrid(){
         for (int i = 0; i < gridWidth; i++){
@@ -184,8 +209,12 @@ public class Game extends ApplicationAdapter {
 	}
 
     public void drawShips(){
-        for (Ship ship: ships){
-			batch.draw(shipTex, ship.getX() * squareSize + 1, ship.getY() * squareSize + 1);
+        for (Ship ship: playerShips){
+			batch.draw(ship.getTexture(), ship.getX() * squareSize + 1, ship.getY() * squareSize + 1);
+		}
+
+		for (Ship ship: enemyShips){
+			batch.draw(ship.getTexture(), ship.getX() * squareSize + 1, ship.getY() * squareSize + 1);
 		}
     }
 
