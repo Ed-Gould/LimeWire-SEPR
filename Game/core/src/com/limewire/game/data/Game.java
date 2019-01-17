@@ -20,8 +20,8 @@ public class Game extends ApplicationAdapter {
 	private OrthographicCamera camera;
 	Texture gridTex, selectionTex, moveDisplayTex, pTurnTex, eTurnTex;
 	int squareSize = 34; // Pixel size of a square (including the black border)
-	public static final int gridWidth = 8; // Width of the grid
-	public static final int gridHeight = 8; // Height of the grid
+	public static final int gridWidth = 16; // Width of the grid
+	public static final int gridHeight = 16; // Height of the grid
 
 	// Selection variables
 	int selectionX = 0;
@@ -70,10 +70,12 @@ public class Game extends ApplicationAdapter {
 		enemyShips = new ArrayList<Ship>();
 
 		// Add some placeholder ships (for testing)
-		playerShips.add(new Ship(1,1,1,"player"));
-		playerShips.add(new Ship(3,4,1,"player"));
+		playerShips.add(new Ship(0,0,1,"player"));
+		playerShips.add(new Ship(1,0,1,"player"));
+		playerShips.add(new Ship(2,0,1,"player"));
 		enemyShips.add(new Ship(6,2, 1, "enemy"));
 		enemyShips.add(new Ship(6,6, 1, "enemy"));
+		enemyShips.add(new Ship(8,4, 1, "enemy"));
 
 		// Add data to map squares for where ships are
 		for (Ship ship: playerShips){

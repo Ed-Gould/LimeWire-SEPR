@@ -13,7 +13,7 @@ public class Map {
     Square[][] grid;
 
     public Map() {
-        grid = MapReader.getMap("Maps/8x8testMap.txt");
+        grid = MapReader.getMap("Maps/16x16Map.txt");
     }
 
     public boolean isValidSquare(Coords coordinates) {
