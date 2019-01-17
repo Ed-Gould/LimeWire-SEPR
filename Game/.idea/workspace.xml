@@ -2,15 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b850c7ba-f198-48c7-b07b-5567bb09d423" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/core/assets/Maps/16x16Map.txt" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/assets/derwentShip.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/assets/jamesShip.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/assets/vanbrughShip.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/assets/water1.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/assets/water2.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/core/assets/water3.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/assets/Maps/8x8testMap.txt" beforeDir="false" afterPath="$PROJECT_DIR$/core/assets/Maps/8x8testMap.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/out/production/classes/com/limewire/game/data/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/out/production/classes/com/limewire/game/data/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/out/production/classes/com/limewire/game/data/Map.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/out/production/classes/com/limewire/game/data/Map.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/out/production/classes/com/limewire/game/data/ShipList.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/out/production/classes/com/limewire/game/data/ShipList.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/out/production/classes/com/limewire/game/helpers/MapReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/out/production/classes/com/limewire/game/helpers/MapReader.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/limewire/game/data/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/limewire/game/data/Map.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/core/.gradle/" />
     <ignored path="$PROJECT_DIR$/core/build/" />
@@ -107,25 +105,27 @@
         <counts>
           <entry key="class" value="1" />
           <entry key="java" value="5" />
+          <entry key="png" value="3" />
           <entry key="txt" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="CLASS" value="1" />
+          <entry key="Image" value="3" />
           <entry key="JAVA" value="5" />
           <entry key="PLAIN_TEXT" value="8" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="3960" />
+          <entry key="java" value="3961" />
           <entry key="txt" value="174" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="3960" />
+          <entry key="JAVA" value="3961" />
           <entry key="PLAIN_TEXT" value="174" />
         </counts>
       </usages-collector>
@@ -138,8 +138,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="578">
-                  <caret line="77" column="35" selection-start-line="77" selection-start-column="35" selection-end-line="77" selection-end-column="35" />
+                <state relative-caret-position="289">
+                  <caret line="60" selection-start-line="60" selection-end-line="61" />
                   <folding>
                     <element signature="method#drawGrid#0;class#Game#0" />
                     <element signature="method#drawMap#0;class#Game#0" />
@@ -215,8 +215,8 @@
           <file pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/ShipList.java">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="408">
-                  <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+                <state relative-caret-position="476">
+                  <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
                 </state>
               </provider>
             </entry>
@@ -1113,7 +1113,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547744717158" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547746263344" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/core/assets" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -1124,8 +1124,8 @@
       <recent name="H:\Second Year\SEPR\A2Git\LimeWire-SEPR\Game\core\assets\Maps" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
-      <recent name="H:\Second Year\SEPR\A2Git\LimeWire-SEPR\Game\core\assets\Maps" />
       <recent name="H:\Second Year\SEPR\A2Git\LimeWire-SEPR\Game\core\assets" />
+      <recent name="H:\Second Year\SEPR\A2Git\LimeWire-SEPR\Game\core\assets\Maps" />
       <recent name="H:\Second Year\SEPR\A2Git\LimeWire-SEPR\Game\core\src\com\limewire\game" />
       <recent name="H:\Second Year\SEPR\A2Git\LimeWire-SEPR\Game\core\src\com\limewire\game\helpers" />
     </key>
@@ -1281,18 +1281,18 @@
       <updated>1539776468760</updated>
       <workItem from="1547643052243" duration="6938000" />
       <workItem from="1547652702995" duration="1390000" />
-      <workItem from="1547736394033" duration="8220000" />
+      <workItem from="1547736394033" duration="9745000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="16548000" />
+    <option name="totallyTimeSpent" value="18073000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" order="0" visible="true" weight="0.1546105" />
+      <window_info active="true" id="Project" order="0" visible="true" weight="0.1546105" />
       <window_info id="Structure" order="1" weight="0.25" />
       <window_info id="Designer" order="2" />
       <window_info id="Nl-Palette" order="3" />
@@ -1304,7 +1304,7 @@
       <window_info anchor="bottom" id="Build" order="1" />
       <window_info anchor="bottom" id="Message" order="2" />
       <window_info anchor="bottom" id="Find" order="3" />
-      <window_info active="true" anchor="bottom" id="Run" order="4" sideWeight="0.49523053" visible="true" weight="0.32917318" />
+      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.49523053" visible="true" weight="0.32917318" />
       <window_info anchor="bottom" id="Debug" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
@@ -1381,13 +1381,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/ShipList.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="408">
-          <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/helpers/MapReader.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="221">
@@ -1413,13 +1406,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="17">
           <caret line="1" column="13" selection-start-line="1" selection-start-column="13" selection-end-line="1" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/assets/Maps/16x16Map.txt">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="68">
-          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
         </state>
       </provider>
     </entry>
@@ -1451,10 +1437,33 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/Maps/16x16Map.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="68">
+          <caret line="4" column="13" selection-start-line="4" selection-start-column="13" selection-end-line="4" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/ShipList.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="476">
+          <caret line="29" lean-forward="true" selection-start-line="29" selection-end-line="29" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/water3.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/water2.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/water1.png">
+      <provider selected="true" editor-type-id="images" />
+    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="578">
-          <caret line="77" column="35" selection-start-line="77" selection-start-column="35" selection-end-line="77" selection-end-column="35" />
+        <state relative-caret-position="289">
+          <caret line="60" selection-start-line="60" selection-end-line="61" />
           <folding>
             <element signature="method#drawGrid#0;class#Game#0" />
             <element signature="method#drawMap#0;class#Game#0" />
