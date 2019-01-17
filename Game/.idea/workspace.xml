@@ -2,15 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b850c7ba-f198-48c7-b07b-5567bb09d423" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/uiDesigner.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/out/production/classes/com/limewire/game/data/Game.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/out/production/classes/com/limewire/game/data/Game.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/out/production/classes/com/limewire/game/data/Test.class" beforeDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/limewire/game/data/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/limewire/game/data/Map.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/limewire/game/data/Ship.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/limewire/game/data/Ship.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/limewire/game/data/ShipList.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/limewire/game/data/ShipList.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/core/src/com/limewire/game/data/Test.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/limewire/game/helpers/Test.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/core/.gradle/" />
     <ignored path="$PROJECT_DIR$/core/build/" />
@@ -130,8 +123,8 @@
       <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="475">
-              <caret line="134" column="63" selection-start-line="134" selection-start-column="63" selection-end-line="134" selection-end-column="63" />
+            <state relative-caret-position="676">
+              <caret line="305" column="5" selection-start-line="305" selection-start-column="5" selection-end-line="305" selection-end-column="5" />
               <folding>
                 <element signature="method#drawGrid#0;class#Game#0" />
                 <element signature="method#drawMap#0;class#Game#0" />
@@ -1040,7 +1033,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547739371383" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547739500942" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -1188,12 +1181,12 @@
       <updated>1539776468760</updated>
       <workItem from="1547643052243" duration="6938000" />
       <workItem from="1547652702995" duration="1390000" />
-      <workItem from="1547736394033" duration="2931000" />
+      <workItem from="1547736394033" duration="3077000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11259000" />
+    <option name="totallyTimeSpent" value="11405000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
@@ -1318,8 +1311,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="475">
-          <caret line="134" column="63" selection-start-line="134" selection-start-column="63" selection-end-line="134" selection-end-column="63" />
+        <state relative-caret-position="676">
+          <caret line="305" column="5" selection-start-line="305" selection-start-column="5" selection-end-line="305" selection-end-column="5" />
           <folding>
             <element signature="method#drawGrid#0;class#Game#0" />
             <element signature="method#drawMap#0;class#Game#0" />

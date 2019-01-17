@@ -304,6 +304,4 @@ public class Game extends ApplicationAdapter {
 			batch.draw(eTurnTex, gridWidth * squareSize - 24,gridHeight * squareSize - 24);
 		}
 	}
-
-
 }
