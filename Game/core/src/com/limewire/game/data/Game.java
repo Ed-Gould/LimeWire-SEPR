@@ -69,15 +69,6 @@ public class Game extends ApplicationAdapter {
 		playerShips = new ArrayList<Ship>();
 		enemyShips = new ArrayList<Ship>();
 
-
-		// Add land for testing
-		map.grid[3][1] = new Square("land");
-		map.grid[3][2] = new Square("land");
-		map.grid[4][2] = new Square("land");
-		map.grid[2][4] = new Square("land");
-		map.grid[4][4] = new Square("land");
-		map.grid[4][5] = new Square("land");
-
 		// Add some placeholder ships (for testing)
 		playerShips.add(new Ship(1,1,1,"player"));
 		playerShips.add(new Ship(3,4,1,"player"));

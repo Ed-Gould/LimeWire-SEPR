@@ -1,5 +1,6 @@
 package com.limewire.game.data;
 
+import com.limewire.game.helpers.MapReader;
 import jdk.nashorn.internal.ir.Symbol;
 
 import java.lang.reflect.Array;
@@ -11,29 +12,24 @@ import java.util.Set;
 public class Map {
     Square[][] grid;
 
-    public Map(){
-        this.grid = new Square[Game.gridWidth][Game.gridHeight];
-        for (int i = 0; i < Game.gridWidth; i++){
-            for (int j = 0; j < Game.gridHeight; j++){
-                grid[i][j] = new Square("water");
-            }
-        }
+    public Map() {
+        grid = MapReader.getMap("Maps/8x8testMap.txt");
     }
 
-    public boolean isValidSquare(Coords coordinates){
+    public boolean isValidSquare(Coords coordinates) {
         // Check if the coordinates are in the bounds of the map
         if (coordinates.getX() >= Game.gridWidth || coordinates.getX() < 0) {
             return false;
         }
-        if (coordinates.getY() >= Game.gridHeight || coordinates.getY() < 0){
+        if (coordinates.getY() >= Game.gridHeight || coordinates.getY() < 0) {
             return false;
         }
         // Check if the square is pathable and not occupied
         return grid[coordinates.getX()][coordinates.getY()].isPathable && grid[coordinates.getX()][coordinates.getY()].ship == null;
     }
 
-    public boolean isNewSquare(Set<Coords> squares, Coords square){
-        for (Coords s: squares){
+    public boolean isNewSquare(Set<Coords> squares, Coords square) {
+        for (Coords s : squares) {
             if (s.getX() == square.getX() && s.getY() == square.getY()) {
                 return false;
             }
@@ -41,7 +37,7 @@ public class Map {
         return true;
     }
 
-    public Set<Coords> getPossibleMoves(Ship ship){
+    public Set<Coords> getPossibleMoves(Ship ship) {
         Set<Coords> possibleSquares = new HashSet<Coords>();
         Set<Coords> visitedSquares = new HashSet<Coords>();
         Set<Coords> newSquares = new HashSet<Coords>();
@@ -49,21 +45,21 @@ public class Map {
 
         int movesLeft = ship.getMovesLeft() + 1;
 
-        while (newSquares.size() > 0 && movesLeft != 0){
+        while (newSquares.size() > 0 && movesLeft != 0) {
             Set<Coords> currentSquares = new HashSet<Coords>(newSquares);
-            for (Coords square: currentSquares){
+            for (Coords square : currentSquares) {
                 possibleSquares.add(square);
                 visitedSquares.add(square);
                 newSquares.remove(square);
 
                 Set<Coords> moveSquares = new HashSet<Coords>();
-                moveSquares.add(new Coords(square.getX()-1, square.getY()));
-                moveSquares.add(new Coords(square.getX()+1, square.getY()));
-                moveSquares.add(new Coords(square.getX(), square.getY()+1));
-                moveSquares.add(new Coords(square.getX(), square.getY()-1));
+                moveSquares.add(new Coords(square.getX() - 1, square.getY()));
+                moveSquares.add(new Coords(square.getX() + 1, square.getY()));
+                moveSquares.add(new Coords(square.getX(), square.getY() + 1));
+                moveSquares.add(new Coords(square.getX(), square.getY() - 1));
 
-                for (Coords moveSquare: moveSquares){
-                    if (isNewSquare(visitedSquares, moveSquare) && isValidSquare(moveSquare)){
+                for (Coords moveSquare : moveSquares) {
+                    if (isNewSquare(visitedSquares, moveSquare) && isValidSquare(moveSquare)) {
                         newSquares.add(moveSquare);
                     }
                     visitedSquares.add(moveSquare);
@@ -74,19 +70,33 @@ public class Map {
         return possibleSquares;
     }
 
-    public Square[][] getGrid(){
+    public Square[][] getGrid() {
         return this.grid;
     }
 
-    public Ship getShip(Coords coordinates){
+    public Ship getShip(Coords coordinates) {
         return grid[coordinates.getX()][coordinates.getY()].ship;
     }
 
-    public void deleteShip(Coords coords){
+    public void deleteShip(Coords coords) {
         grid[coords.getX()][coords.getY()].ship = null;
     }
 
-    public void setShip(Ship ship){
+    public void setShip(Ship ship) {
         grid[ship.getX()][ship.getY()].ship = ship;
     }
 }
+
+//Debug map:
+/*this.grid = new Square[Game.gridWidth][Game.gridHeight];
+        for (int i = 0; i < Game.gridWidth; i++){
+            for (int j = 0; j < Game.gridHeight; j++){
+                grid[i][j] = new Square("w");
+            }
+        }
+        grid[3][1] = new Square("l");
+        grid[3][2] = new Square("l");
+        grid[4][2] = new Square("l");
+        grid[2][4] = new Square("l");
+        grid[4][4] = new Square("l");
+        grid[4][5] = new Square("l");*/

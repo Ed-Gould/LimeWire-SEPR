@@ -2,8 +2,13 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b850c7ba-f198-48c7-b07b-5567bb09d423" name="Default" comment="">
+      <change afterPath="$PROJECT_DIR$/core/assets/Maps/8x8testMap.txt" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/out/production/classes/com/limewire/game/helpers/MapReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/out/production/classes/com/limewire/game/helpers/MapReader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/limewire/game/data/Map.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/limewire/game/data/Map.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/limewire/game/data/Square.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/limewire/game/data/Square.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/core/src/com/limewire/game/helpers/MapReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/limewire/game/helpers/MapReader.java" afterDir="false" />
     </list>
     <ignored path="$PROJECT_DIR$/core/.gradle/" />
     <ignored path="$PROJECT_DIR$/core/build/" />
@@ -98,105 +103,139 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
-          <entry key="java" value="2" />
+          <entry key="class" value="1" />
+          <entry key="java" value="5" />
+          <entry key="txt" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
-          <entry key="JAVA" value="2" />
+          <entry key="CLASS" value="1" />
+          <entry key="JAVA" value="5" />
+          <entry key="PLAIN_TEXT" value="6" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="java" value="2335" />
+          <entry key="java" value="3843" />
+          <entry key="txt" value="72" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="JAVA" value="2335" />
+          <entry key="JAVA" value="3843" />
+          <entry key="PLAIN_TEXT" value="72" />
         </counts>
       </usages-collector>
     </session>
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="676">
-              <caret line="305" column="5" selection-start-line="305" selection-start-column="5" selection-end-line="305" selection-end-column="5" />
-              <folding>
-                <element signature="method#drawGrid#0;class#Game#0" />
-                <element signature="method#drawMap#0;class#Game#0" />
-                <element signature="method#drawShips#0;class#Game#0" />
-                <element signature="method#drawMoveDisplay#0;class#Game#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Ship.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="630">
-              <caret line="83" column="46" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
-              <folding>
-                <element signature="e#1967#1968#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Map.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="234">
-              <caret line="49" column="43" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="43" />
-              <folding>
-                <element signature="method#isValidSquare#0;class#Map#0" />
-                <element signature="method#isNewSquare#0;class#Map#0" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Square.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="544">
-              <caret line="34" column="35" lean-forward="true" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Coords.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="969">
-              <caret line="67" selection-start-line="67" selection-end-line="67" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/helpers/Test.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="68">
-              <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/ShipList.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="408">
-              <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-    </leaf>
+    <splitter split-orientation="horizontal" split-proportion="0.5">
+      <split-first>
+        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="474">
+                  <caret line="79" selection-start-line="79" selection-end-line="79" />
+                  <folding>
+                    <element signature="method#drawGrid#0;class#Game#0" />
+                    <element signature="method#drawMap#0;class#Game#0" />
+                    <element signature="method#drawShips#0;class#Game#0" />
+                    <element signature="method#drawMoveDisplay#0;class#Game#0" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Ship.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="1003">
+                  <caret line="83" column="46" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
+                  <folding>
+                    <element signature="e#1967#1968#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Map.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="136">
+                  <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+                  <folding>
+                    <element signature="method#isValidSquare#0;class#Map#0" />
+                    <element signature="method#isNewSquare#0;class#Map#0" />
+                    <element signature="e#2525#2526#0" expanded="true" />
+                    <element signature="e#2557#2558#0" expanded="true" />
+                    <element signature="e#2604#2605#0" expanded="true" />
+                    <element signature="e#2676#2677#0" expanded="true" />
+                    <element signature="e#2721#2722#0" expanded="true" />
+                    <element signature="e#2783#2784#0" expanded="true" />
+                    <element signature="e#2821#2822#0" expanded="true" />
+                    <element signature="e#2879#2880#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Square.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="374">
+                  <caret line="24" selection-start-line="24" selection-end-line="24" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Coords.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="969">
+                  <caret line="67" selection-start-line="67" selection-end-line="67" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/helpers/Test.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="68">
+                  <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/ShipList.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="408">
+                  <caret line="25" column="5" selection-start-line="25" selection-start-column="5" selection-end-line="25" selection-end-column="5" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-first>
+      <split-second>
+        <leaf>
+          <file pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/helpers/MapReader.java">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="523">
+                  <caret line="61" column="53" selection-start-line="61" selection-start-column="53" selection-end-line="61" selection-end-column="53" />
+                  <folding>
+                    <element signature="e#1913#1914#0" expanded="true" />
+                  </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+        </leaf>
+      </split-second>
+    </splitter>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -215,10 +254,21 @@
       <find>hip</find>
       <find>movespp</find>
       <find>coordinates</find>
+      <find>int</find>
+      <find>map1</find>
+      <find>map_x</find>
+      <find>map_y</find>
+      <find>file</find>
     </findStrings>
     <replaceStrings>
       <replace>&quot;player&quot;</replace>
       <replace>coords</replace>
+      <replace>String</replace>
+      <replace>map</replace>
+      <replace>Game.Map</replace>
+      <replace>Game.gridWidth</replace>
+      <replace>Game.gridHeight</replace>
+      <replace>fileName</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -955,10 +1005,12 @@
         <option value="$PROJECT_DIR$/core/src/com/limewire/game/data/Coords.java" />
         <option value="$PROJECT_DIR$/core/src/com/limewire/game/data/Test.java" />
         <option value="$PROJECT_DIR$/core/src/com/limewire/game/data/ShipList.java" />
+        <option value="$PROJECT_DIR$/core/src/com/limewire/game/data/Ship.java" />
+        <option value="$PROJECT_DIR$/core/assets/Maps/8x8testMap.txt" />
+        <option value="$PROJECT_DIR$/core/src/com/limewire/game/data/Square.java" />
+        <option value="$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java" />
         <option value="$PROJECT_DIR$/core/src/com/limewire/game/helpers/MapReader.java" />
         <option value="$PROJECT_DIR$/core/src/com/limewire/game/data/Map.java" />
-        <option value="$PROJECT_DIR$/core/src/com/limewire/game/data/Ship.java" />
-        <option value="$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java" />
       </list>
     </option>
   </component>
@@ -992,6 +1044,19 @@
               <item name="Game" type="b2602c69:ProjectViewProjectNode" />
               <item name="Game" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
               <item name="core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+            </path>
+            <path>
+              <item name="Game" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Game" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Game" type="b2602c69:ProjectViewProjectNode" />
+              <item name="Game" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="core" type="8a07ba80:GradleTreeStructureProvider$GradleModuleDirectoryNode" />
+              <item name="assets" type="462c0819:PsiDirectoryNode" />
+              <item name="Maps" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="Game" type="b2602c69:ProjectViewProjectNode" />
@@ -1033,11 +1098,19 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547739500942" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547741646702" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/core/assets" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
     <property name="project.structure.side.proportion" value="0.0" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="H:\Second Year\SEPR\A2Git\LimeWire-SEPR\Game\core\assets\Maps" />
+      <recent name="H:\Second Year\SEPR\A2Git\LimeWire-SEPR\Game\core\assets" />
+      <recent name="H:\Second Year\SEPR\A2Git\LimeWire-SEPR\Game\core\src\com\limewire\game" />
+      <recent name="H:\Second Year\SEPR\A2Git\LimeWire-SEPR\Game\core\src\com\limewire\game\helpers" />
+    </key>
   </component>
   <component name="RunDashboard">
     <option name="ruleStates">
@@ -1089,6 +1162,14 @@
       <option name="MAIN_CLASS_NAME" value="com.limewire.game.desktop.DesktopLauncher" />
       <module name="desktop_main" />
       <option name="WORKING_DIRECTORY" value="file://$PROJECT_DIR$/core/assets" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="MapReaderDebug" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.limewire.game.helpers.MapReader" />
+      <module name="desktop_main" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/core/assets" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -1166,6 +1247,7 @@
     </configuration>
     <list>
       <item itemvalue="Application.Desktop" />
+      <item itemvalue="Application.MapReaderDebug" />
       <item itemvalue="Application.Testing" />
     </list>
   </component>
@@ -1181,12 +1263,12 @@
       <updated>1539776468760</updated>
       <workItem from="1547643052243" duration="6938000" />
       <workItem from="1547652702995" duration="1390000" />
-      <workItem from="1547736394033" duration="3077000" />
+      <workItem from="1547736394033" duration="5170000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="11405000" />
+    <option name="totallyTimeSpent" value="13498000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
@@ -1260,24 +1342,24 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Square.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="544">
-          <caret line="34" column="35" lean-forward="true" selection-start-line="34" selection-start-column="35" selection-end-line="34" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/helpers/MapReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="13" column="13" lean-forward="true" selection-start-line="13" selection-start-column="13" selection-end-line="13" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/helpers/Test.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="68">
           <caret line="9" column="13" selection-start-line="9" selection-start-column="13" selection-end-line="9" selection-end-column="13" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="jar://C:/Program Files/Java/jdk1.8.0_181/jre/lib/rt.jar!/java/io/FileReader.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="102">
+          <caret line="7" column="11" selection-start-line="7" selection-start-column="11" selection-end-line="7" selection-end-column="11" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/assets/Maps/map1.txt">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="51">
+          <caret line="3" column="33" selection-start-line="3" selection-start-column="33" selection-end-line="3" selection-end-column="33" />
         </state>
       </provider>
     </entry>
@@ -1288,20 +1370,33 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Map.java">
+    <entry file="file://$PROJECT_DIR$/core/assets/Maps/8x8testMap.txt">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="234">
-          <caret line="49" column="43" selection-start-line="49" selection-start-column="43" selection-end-line="49" selection-end-column="43" />
+        <state relative-caret-position="68">
+          <caret line="4" column="15" lean-forward="true" selection-start-line="4" selection-start-column="15" selection-end-line="4" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/helpers/MapReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="523">
+          <caret line="61" column="53" selection-start-line="61" selection-start-column="53" selection-end-line="61" selection-end-column="53" />
           <folding>
-            <element signature="method#isValidSquare#0;class#Map#0" />
-            <element signature="method#isNewSquare#0;class#Map#0" />
+            <element signature="e#1913#1914#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Square.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="374">
+          <caret line="24" selection-start-line="24" selection-end-line="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Ship.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="630">
+        <state relative-caret-position="1003">
           <caret line="83" column="46" selection-start-line="83" selection-start-column="46" selection-end-line="83" selection-end-column="46" />
           <folding>
             <element signature="e#1967#1968#0" expanded="true" />
@@ -1311,13 +1406,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="676">
-          <caret line="305" column="5" selection-start-line="305" selection-start-column="5" selection-end-line="305" selection-end-column="5" />
+        <state relative-caret-position="474">
+          <caret line="79" selection-start-line="79" selection-end-line="79" />
           <folding>
             <element signature="method#drawGrid#0;class#Game#0" />
             <element signature="method#drawMap#0;class#Game#0" />
             <element signature="method#drawShips#0;class#Game#0" />
             <element signature="method#drawMoveDisplay#0;class#Game#0" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Map.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="136">
+          <caret line="15" column="15" selection-start-line="15" selection-start-column="15" selection-end-line="15" selection-end-column="15" />
+          <folding>
+            <element signature="method#isValidSquare#0;class#Map#0" />
+            <element signature="method#isNewSquare#0;class#Map#0" />
+            <element signature="e#2525#2526#0" expanded="true" />
+            <element signature="e#2557#2558#0" expanded="true" />
+            <element signature="e#2604#2605#0" expanded="true" />
+            <element signature="e#2676#2677#0" expanded="true" />
+            <element signature="e#2721#2722#0" expanded="true" />
+            <element signature="e#2783#2784#0" expanded="true" />
+            <element signature="e#2821#2822#0" expanded="true" />
+            <element signature="e#2879#2880#0" expanded="true" />
           </folding>
         </state>
       </provider>

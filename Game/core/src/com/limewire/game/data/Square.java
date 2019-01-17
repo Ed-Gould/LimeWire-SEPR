@@ -22,7 +22,7 @@ public class Square {
     }
 
     public void setTexture(String type){
-        if (type.equals("water")){
+        if (type.equals("w")){
             this.texture =  new Texture("32water.png");
         }
         else {
@@ -31,7 +31,7 @@ public class Square {
     }
 
     public void setPathable(String type){
-        if (type.equals("water")){
+        if (type.equals("w")){
             this.isPathable = true;
         }
         else {
