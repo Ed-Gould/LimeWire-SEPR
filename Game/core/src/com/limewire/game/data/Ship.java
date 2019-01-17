@@ -3,7 +3,7 @@ package com.limewire.game.data;
 import com.badlogic.gdx.graphics.Texture;
 
 public class Ship {
-    private int x, y, health, moveSpeed, movesLeft;
+    private int x, y, health, moveSpeed, movesLeft, attacksPerTurn, attacksLeft;
     private String team;
     private Texture texture;
 
@@ -12,8 +12,10 @@ public class Ship {
         this.y = y;
         this.health = health;
         this.moveSpeed = 3;
-        this.team = team;
         this.movesLeft = moveSpeed;
+        this.attacksPerTurn = 1;
+        this.attacksLeft = attacksPerTurn;
+        this.team = team;
 
         if (team.equals("player")){
             this.texture = new Texture("32ship.png");
@@ -55,14 +57,6 @@ public class Ship {
         return this.moveSpeed;
     }
 
-    public String getTeam(){
-        return this.team;
-    }
-
-    public Texture getTexture(){
-        return this.texture;
-    }
-
     public int getMovesLeft(){
         return this.movesLeft;
     }
@@ -71,7 +65,41 @@ public class Ship {
         this.movesLeft = moves;
     }
 
-    public void decMovesLeft(){ // Decrement moves left by one
-        this.movesLeft -= 1;
+    public void decMovesLeft(int n){ // Decrement moves left by n
+        this.movesLeft -= n;
     }
+
+    public int getAttacksPerTurn(){
+        return this.attacksPerTurn;
+    }
+
+    public int getAttacksLeft(){
+        return this.attacksLeft;
+    }
+
+    public void setAttacksLeft(int attacksLeft){
+        this.attacksLeft = attacksLeft;
+    }
+
+    public void decAttacksLeft(){ // Decrement number of attacks left by 1.
+        this.attacksLeft -= 1;
+    }
+
+    public boolean canAttack(){ // If the ship has attacks remaining, return true
+        if (this.attacksLeft > 0){
+            return true;
+        }
+        return false;
+    }
+
+    public String getTeam(){
+        return this.team;
+    }
+
+    public Texture getTexture(){
+        return this.texture;
+    }
+
+
+
 }

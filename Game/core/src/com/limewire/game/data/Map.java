@@ -47,7 +47,7 @@ public class Map {
         Set<Coords> newSquares = new HashSet<Coords>();
         newSquares.add(ship.getCoords());
 
-        int movesLeft = ship.getMoveSpeed() + 1;
+        int movesLeft = ship.getMovesLeft() + 1;
 
         while (newSquares.size() > 0 && movesLeft != 0){
             Set<Coords> currentSquares = new HashSet<Coords>(newSquares);
@@ -89,43 +89,4 @@ public class Map {
     public void setShip(Ship ship){
         grid[ship.getX()][ship.getY()].ship = ship;
     }
-
-    /*public Set<Coords> getPossibleMoves(Ship ship){
-        Set<Coords> visitedSquares = new HashSet<Coords>();
-        Set<Coords> newSquares = new HashSet<Coords>();
-        newSquares.add(ship.getCoords());
-
-        int movesLeft = ship.getMoveSpeed();
-        while (newSquares.size() > 0 && movesLeft > 0){
-            Set<Coords> currentSquares = new HashSet<Coords>(newSquares);
-            for (Coords square: currentSquares){
-                Coords leftMove = new Coords(square.getX()-1, square.getY());
-                Coords rightMove = new Coords(square.getX()+1, square.getY());
-                Coords upMove = new Coords(square.getX(), square.getY()+1);
-                Coords downMove = new Coords(square.getX(), square.getY()-1);
-
-                visitedSquares.addAll(newSquares);
-                if (isValidSquare(leftMove) && isNewSquare(visitedSquares, leftMove)){
-                    newSquares.add(leftMove);
-                }
-
-                if (isValidSquare(rightMove) && isNewSquare(visitedSquares, rightMove)){
-                    newSquares.add(rightMove);
-                }
-
-                if (isValidSquare(upMove) && isNewSquare(visitedSquares, upMove)){
-                    newSquares.add(upMove);
-                }
-
-                if (isValidSquare(downMove) && isNewSquare(visitedSquares, downMove)){
-                    newSquares.add(downMove);
-                }
-
-                newSquares.remove(square);
-                visitedSquares.add(square);
-            }
-            movesLeft -= 1;
-        }
-        return visitedSquares;
-    }*/
 }

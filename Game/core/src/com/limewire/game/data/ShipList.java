@@ -25,7 +25,7 @@ public class ShipList {
     private void addShip(Ship ship)
     {
         ships.add(ship);
-        map.getSquare(ship.getX(),ship.getY()).ship = ship;
+        map.setShip(ship);
     }
 
     private void generateShipList(){

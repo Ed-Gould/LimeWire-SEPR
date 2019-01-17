@@ -18,7 +18,7 @@ import java.util.Set;
 public class Game extends ApplicationAdapter {
 	SpriteBatch batch;
 	private OrthographicCamera camera;
-	Texture gridTex, selectionTex, moveDisplayTex;
+	Texture gridTex, selectionTex, moveDisplayTex, pTurnTex, eTurnTex;
 	int squareSize = 34; // Pixel size of a square (including the black border)
 	public static final int gridWidth = 8; // Width of the grid
 	public static final int gridHeight = 8; // Height of the grid
@@ -30,10 +30,13 @@ public class Game extends ApplicationAdapter {
 	boolean isShipSelected = false;
 	Set<Coords> moveSquares = new HashSet<Coords>();
 
-	// Map and contents
+	// Map and contents variables
 	Map map;
 	ArrayList<Ship> playerShips;
 	ArrayList<Ship> enemyShips;
+
+	// Game logic variables
+	int turn = 0; // 0 means player turn, 1 & 2 are other colleges
 
 	// These variables are the offset of the camera to show the corner map in the bottom left of the screen
 	float cameraOffsetX;
@@ -57,6 +60,9 @@ public class Game extends ApplicationAdapter {
 		gridTex = new Texture("32gridSquare.png");
 		selectionTex = new Texture("32selection.png");
 		moveDisplayTex = new Texture("32moveDisplay.png");
+		pTurnTex = new Texture("24playerTurn.png");
+		eTurnTex = new Texture("24enemyTurn.png");
+
 
 		// Create data structures for map and list of ships
 		map = new Map(); // Map by default is all water
@@ -75,7 +81,8 @@ public class Game extends ApplicationAdapter {
 		// Add some placeholder ships (for testing)
 		playerShips.add(new Ship(1,1,1,"player"));
 		playerShips.add(new Ship(3,4,1,"player"));
-		enemyShips.add(new Ship(6,6, 1, "e"));
+		enemyShips.add(new Ship(6,2, 1, "enemy"));
+		enemyShips.add(new Ship(6,6, 1, "enemy"));
 
 		// Add data to map squares for where ships are
 		for (Ship ship: playerShips){
@@ -108,7 +115,6 @@ public class Game extends ApplicationAdapter {
 	public void handleSelection(){
 		Coords coordinates = getGridLocation();
 
-
 		// Handle cases where a ship is selected
 		if (isShipSelected()){
 			// Move the ship to a new location
@@ -121,9 +127,16 @@ public class Game extends ApplicationAdapter {
 				Ship newSelectedShip = map.getShip(coordinates);
 				// If the new location contains an enemy ship
 				if (!newSelectedShip.getTeam().equals("player")){
-					if (getSelectedShip().nextToShip(newSelectedShip)){
-						deleteShip(newSelectedShip);
+					// If the ship can attack
+					if (getSelectedShip().canAttack()){
+						// Check if the play is next to the ship (for a valid attack)
+						if (getSelectedShip().nextToShip(newSelectedShip)){
+							// Successfully attack the ship
+							getSelectedShip().decAttacksLeft();
+							deleteShip(newSelectedShip);
+						}
 					}
+
 				}
 			}
 			showSelection = false;
@@ -139,13 +152,14 @@ public class Game extends ApplicationAdapter {
 		selectionY = coordinates.getY();
 	}
 
-	public void moveSelectedShip(Coords coordinates) {
+	public void moveSelectedShip(Coords coords) {
 		Ship ship = getSelectedShip();
 		for (Coords moveSquare : moveSquares) {
-			if (coordinates.equals(moveSquare)) {
-				map.deleteShip(coordinates);
-				ship.setX(coordinates.getX());
-				ship.setY(coordinates.getY());
+			if (coords.equals(moveSquare)) {
+				map.deleteShip(ship.getCoords());
+				ship.decMovesLeft(Math.abs(ship.getX()-coords.getX()) + Math.abs(ship.getY()-coords.getY()));
+				ship.setX(coords.getX());
+				ship.setY(coords.getY());
 				map.setShip(ship);
 				return;
 			}
@@ -182,14 +196,62 @@ public class Game extends ApplicationAdapter {
 		return new HashSet<Coords>();
 	}
 
+	public void startNewTurn(){ // Reset variables such as moves/attacks left for ships
+		for (Ship ship: playerShips){
+			ship.setMovesLeft(ship.getMoveSpeed());
+			ship.setAttacksLeft(ship.getAttacksPerTurn());
+		}
+	}
 
+	public void changeTurnNum(){
+		if (turn == 1){
+			turn = 0;
+		}
+		else {
+			turn += 1;
+		}
+		startNewTurn();
+	}
+
+	public void handleInput() {
+		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
+			camera.translate(-5, 0, 0);
+		}
+
+		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
+			camera.translate(5, 0, 0);
+		}
+
+		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
+			camera.translate(0, 5, 0);
+		}
+
+		if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
+			camera.translate(0, -5, 0);
+		}
+
+		if (Gdx.input.justTouched() && Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
+			handleSelection();
+		}
+
+		if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+			changeTurnNum();
+		}
+
+	}
+
+	public Coords getGridLocation(){ // Returns the coordinates of the mouse in the grid
+		return new Coords (((Gdx.input.getX() + (int) (camera.position.x - cameraOffsetX))/ squareSize),
+				((Gdx.graphics.getHeight() - (Gdx.input.getY() - (int) (camera.position.y - cameraOffsetY))) / squareSize));
+	}
 
 	public void drawAssets(){
 		drawGrid();
 		drawMap();
         drawShips();
-        drawSelectionSquare();
         drawMoveDisplay();
+		drawSelectionSquare();
+		drawTurn();
 	}
 
 	public void drawGrid(){
@@ -232,30 +294,16 @@ public class Game extends ApplicationAdapter {
         }
     }
 
-	public void handleInput() {
-		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-			camera.translate(-5, 0, 0);
+    public void drawTurn(){
+		// If it is the players turn, display the player turn indicator
+		if (turn == 0){
+			batch.draw(pTurnTex, gridWidth * squareSize - 24,gridHeight * squareSize - 24);
 		}
-
-		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			camera.translate(5, 0, 0);
-		}
-
-		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-			camera.translate(0, 5, 0);
-		}
-
-		if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-			camera.translate(0, -5, 0);
-		}
-
-		if (Gdx.input.justTouched() && Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-			handleSelection();
+		// Else display enemy turn indicator
+		else{
+			batch.draw(eTurnTex, gridWidth * squareSize - 24,gridHeight * squareSize - 24);
 		}
 	}
 
-	public Coords getGridLocation(){ // Returns the coordinates of the mouse in the grid
-		return new Coords (((Gdx.input.getX() + (int) (camera.position.x - cameraOffsetX))/ squareSize),
-				((Gdx.graphics.getHeight() - (Gdx.input.getY() - (int) (camera.position.y - cameraOffsetY))) / squareSize));
-	}
+
 }
