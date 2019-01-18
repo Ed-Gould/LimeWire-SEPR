@@ -17,15 +17,22 @@ public class Ship {
         this.attacksLeft = attacksPerTurn;
         this.team = team;
 
-        if (team.equals("player")){
-            this.texture = new Texture("32ship.png");
+        if (team.equals("derwent")){
+            this.texture = new Texture("derwentShip.png");
         }
         else{
-            this.texture = new Texture("32enemyShip.png");
+            this.texture = new Texture("jamesShip.png");
         }
     }
 
-   public boolean nextToShip(Ship otherShip){
+    public boolean nextToCoords(Coords coords){
+        if (Math.abs(this.x - coords.getX()) > 1 || Math.abs(this.y - coords.getY()) > 1){
+            return false;
+        }
+        return !(Math.abs(this.x - coords.getX()) > 0 && Math.abs(this.y - coords.getY()) > 0);
+    }
+
+    public boolean nextToShip(Ship otherShip){
         // If the ships are greater than 1 space apart on the x or y axis:
         if (Math.abs(this.x - otherShip.x) > 1 || Math.abs(this.y - otherShip.y) > 1){
             return false;

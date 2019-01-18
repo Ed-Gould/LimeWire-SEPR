@@ -19,6 +19,7 @@ public class Game extends ApplicationAdapter {
 	SpriteBatch batch;
 	private OrthographicCamera camera;
 	Texture gridTex, selectionTex, moveDisplayTex, pTurnTex, eTurnTex;
+
 	int squareSize = 34; // Pixel size of a square (including the black border)
 	public static final int gridWidth = 16; // Width of the grid
 	public static final int gridHeight = 16; // Height of the grid
@@ -34,6 +35,7 @@ public class Game extends ApplicationAdapter {
 	Map map;
 	ArrayList<Ship> playerShips;
 	ArrayList<Ship> enemyShips;
+	College derwentCollege, jamesCollege;
 
 	// Game logic variables
 	int turn = 0; // 0 means player turn, 1 & 2 are other colleges
@@ -64,18 +66,22 @@ public class Game extends ApplicationAdapter {
 		eTurnTex = new Texture("24enemyTurn.png");
 
 
-		// Create data structures for map and list of ships
-		map = new Map(); // Map by default is all water
+		// Create data structures for map and contents
+		map = new Map("Maps/16x16Map.txt");
 		playerShips = new ArrayList<Ship>();
 		enemyShips = new ArrayList<Ship>();
 
 		// Add some placeholder ships (for testing)
-		playerShips.add(new Ship(0,0,1,"player"));
-		playerShips.add(new Ship(1,0,1,"player"));
-		playerShips.add(new Ship(2,0,1,"player"));
-		enemyShips.add(new Ship(6,2, 1, "enemy"));
-		enemyShips.add(new Ship(6,6, 1, "enemy"));
-		enemyShips.add(new Ship(8,4, 1, "enemy"));
+		playerShips.add(new Ship(0,0,1,"james"));
+		playerShips.add(new Ship(1,0,1,"james"));
+		playerShips.add(new Ship(2,0,1,"james"));
+		enemyShips.add(new Ship(6,2, 1, "derwent"));
+		enemyShips.add(new Ship(6,6, 1, "derwent"));
+		enemyShips.add(new Ship(8,4, 1, "derwent"));
+
+		// Add the colleges
+		jamesCollege = new College("james", map.getJamesCoords(), 1, playerShips);
+		derwentCollege = new College("derwent", map.getDerwentCoords(), 1, enemyShips);
 
 		// Add data to map squares for where ships are
 		for (Ship ship: playerShips){
@@ -106,18 +112,19 @@ public class Game extends ApplicationAdapter {
     }
 
 	public void handleSelection(){
-		Coords coordinates = getGridLocation();
+		Coords coords = getGridLocation();
 
 		// Handle cases where a ship is selected
 		if (isShipSelected()){
 			// Move the ship to a new location
-			if (map.isValidSquare(coordinates)){
-				moveSelectedShip(coordinates);
+			if (map.isValidSquare(coords)){
+				moveSelectedShip(coords);
 			}
 
 			// If the location contains an enemy ship (to attack)
-			else if (map.getShip(coordinates) != null){
-				Ship newSelectedShip = map.getShip(coordinates);
+			else if (map.getShip(coords) != null){
+				System.out.println("attack");
+				Ship newSelectedShip = map.getShip(coords);
 				// If the new location contains an enemy ship
 				if (!newSelectedShip.getTeam().equals("player")){
 					// If the ship can attack
@@ -132,17 +139,26 @@ public class Game extends ApplicationAdapter {
 
 				}
 			}
+
+			// Handle cases where an enemy college is selected
+			if (coords.equals(derwentCollege.getCoords())){
+				if (getSelectedShip().canAttack()){
+					if (getSelectedShip().nextToCoords(derwentCollege.getCoords())){
+						map.getSquare(derwentCollege.getCoords()).setTexture("l");
+					}
+				}
+			}
 			showSelection = false;
 		}
 		// If the player selects the same square, invert the selection (to un-select it or re-select)
-		else if (coordinates.equals(new Coords(selectionX, selectionY))) {
+		else if (coords.equals(new Coords(selectionX, selectionY))) {
 			showSelection = !showSelection;
 		}
 		else {
 			showSelection = true;
 		}
-		selectionX = coordinates.getX();
-		selectionY = coordinates.getY();
+		selectionX = coords.getX();
+		selectionY = coords.getY();
 	}
 
 	public void moveSelectedShip(Coords coords) {
@@ -184,7 +200,9 @@ public class Game extends ApplicationAdapter {
 
 	public Set<Coords> getMoveSquares(){
 		if (showSelection && isShipSelected()) {
-			return map.getPossibleMoves(map.getShip(new Coords(selectionX, selectionY)));
+			if (getSelectedShip().getMovesLeft() > 0){
+				return map.getPossibleMoves(getSelectedShip());
+			}
 		}
 		return new HashSet<Coords>();
 	}

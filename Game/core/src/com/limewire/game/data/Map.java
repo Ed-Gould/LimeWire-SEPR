@@ -10,11 +10,29 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Map {
-    Square[][] grid;
+    private Square[][] grid;
+    private Coords derwentCoords, jamesCoords, vanbrughCoords;
 
-    public Map() {
-        grid = MapReader.getMap("Maps/16x16Map.txt");
+    public Map(String fileName) {
+        grid = MapReader.getMap(fileName);
+
+        for (int i = 0; i < Game.gridWidth; i++){
+            for (int j = 0; j < Game.gridHeight; j++){
+                if (grid[i][j].getType().equals("d")){
+                    derwentCoords = new Coords(i, j);
+                }
+
+                else if (grid[i][j].getType().equals("j")){
+                    jamesCoords = new Coords(i,j);
+                }
+
+                else if (grid[i][j].getType().equals("v")){
+                    vanbrughCoords = new Coords(i,j);
+                }
+            }
+        }
     }
+
 
     public boolean isValidSquare(Coords coordinates) {
         // Check if the coordinates are in the bounds of the map
@@ -85,18 +103,20 @@ public class Map {
     public void setShip(Ship ship) {
         grid[ship.getX()][ship.getY()].ship = ship;
     }
-}
 
-//Debug map:
-/*this.grid = new Square[Game.gridWidth][Game.gridHeight];
-        for (int i = 0; i < Game.gridWidth; i++){
-            for (int j = 0; j < Game.gridHeight; j++){
-                grid[i][j] = new Square("w");
-            }
-        }
-        grid[3][1] = new Square("l");
-        grid[3][2] = new Square("l");
-        grid[4][2] = new Square("l");
-        grid[2][4] = new Square("l");
-        grid[4][4] = new Square("l");
-        grid[4][5] = new Square("l");*/
+    public Square getSquare(Coords coords){
+        return this.grid[coords.getX()][coords.getY()];
+    }
+
+    public Coords getDerwentCoords() {
+        return this.derwentCoords;
+    }
+
+    public Coords getJamesCoords() {
+        return this.jamesCoords;
+    }
+
+    public Coords getVanbrughCoords() {
+        return this.vanbrughCoords;
+    }
+}
