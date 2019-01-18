@@ -2,7 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="b850c7ba-f198-48c7-b07b-5567bb09d423" name="Default" comment="">
-      <change afterPath="$PROJECT_DIR$/core/src/com/limewire/game/data/PointSystem.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/out/production/classes/com/limewire/game/helpers/MapReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/core/out/production/classes/com/limewire/game/helpers/MapReader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/core/src/com/limewire/game/helpers/MapReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/core/src/com/limewire/game/helpers/MapReader.java" afterDir="false" />
@@ -249,7 +248,7 @@
             <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/helpers/MapReader.java">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="421">
-                  <caret line="55" column="77" selection-start-line="55" selection-start-column="77" selection-end-line="55" selection-end-column="77" />
+                  <caret line="50" column="77" selection-start-line="50" selection-start-column="77" selection-end-line="50" selection-end-column="77" />
                   <folding>
                     <element signature="e#1855#1856#0" expanded="true" />
                     <element signature="e#1913#1914#0" expanded="true" />
@@ -1036,9 +1035,9 @@
         <option value="$PROJECT_DIR$/core/src/com/limewire/game/data/Map.java" />
         <option value="$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java" />
         <option value="$PROJECT_DIR$/core/src/com/limewire/game/data/Square.java" />
-        <option value="$PROJECT_DIR$/core/src/com/limewire/game/helpers/MapReader.java" />
         <option value="$PROJECT_DIR$/core/src/com/limewire/game/data/PointsSystem.java" />
         <option value="$PROJECT_DIR$/core/src/com/limewire/game/data/PointSystem.java" />
+        <option value="$PROJECT_DIR$/core/src/com/limewire/game/helpers/MapReader.java" />
       </list>
     </option>
   </component>
@@ -1113,7 +1112,7 @@
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
-    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547813321572" />
+    <property name="com.android.tools.idea.instantapp.provision.ProvisionBeforeRunTaskProvider.myTimeStamp" value="1547813496400" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="project.structure.last.edited" value="Modules" />
     <property name="project.structure.proportion" value="0.0" />
@@ -1283,12 +1282,12 @@
       <workItem from="1547652702995" duration="1390000" />
       <workItem from="1547736394033" duration="9879000" />
       <workItem from="1547746432860" duration="588000" />
-      <workItem from="1547812828068" duration="487000" />
+      <workItem from="1547812828068" duration="659000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="19282000" />
+    <option name="totallyTimeSpent" value="19454000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="2576" height="1416" extended-state="6" />
@@ -1445,17 +1444,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/helpers/MapReader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="421">
-          <caret line="55" column="77" selection-start-line="55" selection-start-column="77" selection-end-line="55" selection-end-column="77" />
-          <folding>
-            <element signature="e#1855#1856#0" expanded="true" />
-            <element signature="e#1913#1914#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Map.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="340">
@@ -1487,6 +1475,17 @@
             <element signature="e#772#773#0" expanded="true" />
             <element signature="e#811#812#0" expanded="true" />
             <element signature="e#846#847#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/helpers/MapReader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="421">
+          <caret line="50" column="77" selection-start-line="50" selection-start-column="77" selection-end-line="50" selection-end-column="77" />
+          <folding>
+            <element signature="e#1855#1856#0" expanded="true" />
+            <element signature="e#1913#1914#0" expanded="true" />
           </folding>
         </state>
       </provider>

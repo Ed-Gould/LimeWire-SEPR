@@ -22,12 +22,7 @@ public class MapReader {
             while (in.hasNext()) {
                 col = 0;
                 for (String value: in.next().split(",")) {
-                    try {
-                        map[row][col] = value;
-                    }
-                    catch (NumberFormatException err) {
-                        System.out.println("String map value found when int expected");
-                    }
+                    map[row][col] = value;
                     col++;
                 }
                 row++;
