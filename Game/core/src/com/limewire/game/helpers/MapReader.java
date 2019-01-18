@@ -10,7 +10,6 @@ import java.util.Scanner;
 
 public class MapReader {
 
-
     public static String[][] getRawMapData(String fileName) {
         String[][] map = new String[Game.gridHeight][Game.gridWidth];
         int row = 0;

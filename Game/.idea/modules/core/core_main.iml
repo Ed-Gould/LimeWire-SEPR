@@ -4,11 +4,37 @@
     <output url="file://$MODULE_DIR$/../../../core/out/production/classes" />
     <exclude-output />
     <content url="file://$MODULE_DIR$/../../../core/src">
-      <sourceFolder url="file://$MODULE_DIR$/../../../core/src" isTestSource="false" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../core/src" isTestSource="true" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../core/src/com/limewire/game/unit_tests" type="java-test-resource" />
+      <sourceFolder url="file://$MODULE_DIR$/../../../core/src/com/limewire/game/unit_tests/test_resources" isTestSource="true" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx:1.6.1" level="project" />
     <orderEntry type="library" name="Gradle: com.badlogicgames.gdx:gdx-box2d:1.6.1" level="project" />
+    <orderEntry type="module-library" scope="TEST">
+      <library name="JUnit5.2">
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../lib/junit-jupiter-api-5.4.0-M1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../lib/apiguardian-api-1.0.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../lib/opentest4j-1.1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../lib/junit-platform-commons-1.4.0-M1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library>
+        <CLASSES>
+          <root url="jar://$MODULE_DIR$/../../../lib/junit-jupiter-api-5.4.0-M1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../lib/apiguardian-api-1.0.0.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../lib/opentest4j-1.1.1.jar!/" />
+          <root url="jar://$MODULE_DIR$/../../../lib/junit-platform-commons-1.4.0-M1.jar!/" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES />
+      </library>
+    </orderEntry>
   </component>
 </module>
