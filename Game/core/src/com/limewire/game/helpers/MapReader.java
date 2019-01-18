@@ -53,7 +53,7 @@ public class MapReader {
 
         for (int i = 0; i < Game.gridWidth; i++){
             for (int j = 0; j < Game.gridHeight; j++){
-                mapGrid[i][j] = new Square(stringMap[i][j]);
+                mapGrid[j][i] = new Square(stringMap[Game.gridWidth - i - 1][j]);
             }
         }
         return mapGrid;
