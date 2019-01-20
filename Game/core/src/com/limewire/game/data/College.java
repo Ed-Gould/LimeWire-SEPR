@@ -10,13 +10,14 @@ public class College {
     private ArrayList<Ship> ships;
     private Coords coords;
     private int health;
-    private Boolean conquer;
+    private Boolean conquered;
 
     public College(String name, Coords coords, int health, ArrayList<Ship> ships){
         this.name = name;
         this.coords = coords;
         this.health = health;
         this.ships = ships;
+        conquered = false;
     }
 
     public String getName() {
@@ -37,6 +38,14 @@ public class College {
 
     public Coords getCoords() {
         return coords;
+    }
+
+    public Boolean getConquered() {
+        return conquered;
+    }
+
+    public void setConquered(Boolean conquered) {
+        this.conquered = conquered;
     }
 
     public void setCoords(Coords coords) {

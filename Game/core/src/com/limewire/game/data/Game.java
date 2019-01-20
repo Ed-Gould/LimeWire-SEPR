@@ -21,7 +21,7 @@ public class Game extends ApplicationAdapter {
 	// Initialise camera and UI textures
 	private SpriteBatch batch;
 	private OrthographicCamera camera;
-	private Texture gridTex, selectionTex, moveDisplayTex, pTurnTex, eTurnTex, pointsBorderTex;
+	private Texture gridTex, selectionTex, moveDisplayTex, pTurnTex, eTurnTex, pointsBorderTex, loseTex, winTex;
 	private Texture oneTex, twoTex, threeTex, fourTex, fiveTex, sixTex, sevenTex, eightTex, nineTex, zeroTex;
 
 	// Constants about the board size, and image dimensions of squares that make up the board.
@@ -46,8 +46,12 @@ public class Game extends ApplicationAdapter {
 	// Game logic variables
 	int turn = 0; // 0 means player turn, 1 & 2 are other colleges
 
-	//Setup point system
+	// Setup point system
 	private PointSystem pointSystem = new PointSystem("player");
+
+	// Variable to check win condition, (two are required as the player might no have lost/won)
+	private boolean hasLost = false;
+	private boolean hasWon = false;
 
 	// These variables are the offset of the camera to show the corner map in the bottom left of the screen
 	private float cameraOffsetX;
@@ -76,6 +80,8 @@ public class Game extends ApplicationAdapter {
 		pTurnTex = new Texture("24playerTurn.png");
 		eTurnTex = new Texture("24enemyTurn.png");
 		pointsBorderTex = new Texture("pointsBorder.png");
+		loseTex = new Texture("loseMessage.png");
+		winTex = new Texture("winMessage.png");
 
 		// Load digit textures
 		oneTex = new Texture("one.png");
@@ -137,9 +143,18 @@ public class Game extends ApplicationAdapter {
 		drawAssets();
 		batch.end();
 
+		// Get state of selected ship
         moveSquares = getMoveSquares();
         isShipSelected = isShipSelected();
-        handleInput();
+
+        //If the player hasn't lost or won, allow them to make inputs
+        if (!hasLost && !hasWon){
+			handleInput();
+		}
+
+		//Check is the player has lost or won
+        hasLost = hasPlayerLost();
+        hasWon = hasPlayerWon();
 
         // Limit camera from leaving the map bounds
 		camera.position.x = MathUtils.clamp(camera.position.x, camera.viewportWidth / 2f,
@@ -185,6 +200,7 @@ public class Game extends ApplicationAdapter {
 				if (getSelectedShip().canAttack()){
 					if (getSelectedShip().nextToCoords(derwentCollege.getCoords())){
 						pointSystem.addPoints("college");
+						derwentCollege.setConquered(true);
 						map.getSquare(derwentCollege.getCoords()).setTexture("l");
 					}
 				}
@@ -194,6 +210,7 @@ public class Game extends ApplicationAdapter {
 				if (getSelectedShip().canAttack()){
 					if (getSelectedShip().nextToCoords(vanbrughCollege.getCoords())){
 						pointSystem.addPoints("college");
+						vanbrughCollege.setConquered(true);
 						map.getSquare(vanbrughCollege.getCoords()).setTexture("l");
 					}
 				}
@@ -351,6 +368,14 @@ public class Game extends ApplicationAdapter {
 		}
 	}
 
+	public boolean hasPlayerLost(){
+		return playerShips.size() == 0;
+	}
+
+	public boolean hasPlayerWon(){
+		return derwentCollege.getConquered() && vanbrughCollege.getConquered();
+	}
+
 	public Coords getGridLocation(){ // Returns the coordinates of the mouse in the grid
 		return new Coords (((Gdx.input.getX() + (int) (camera.position.x - cameraOffsetX))/ squareSize),
 				((Gdx.graphics.getHeight() - (Gdx.input.getY() - (int) (camera.position.y - cameraOffsetY))) / squareSize));
@@ -365,6 +390,8 @@ public class Game extends ApplicationAdapter {
 		drawTurn();
 		drawPointsBorder();
 		drawPoints();
+		drawLoseMessage();
+		drawWinMessage();
 	}
 
 	public void drawGrid(){ // Draws the grid to the screen
@@ -461,8 +488,8 @@ public class Game extends ApplicationAdapter {
 			}
 
 			else if (points[i] == "7".charAt(0)) {
-				batch.draw(sevenTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetX - 14 * currentDigit
-						, Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
+				batch.draw(sevenTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetX - 14 * currentDigit,
+						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "8".charAt(0)) {
@@ -481,5 +508,17 @@ public class Game extends ApplicationAdapter {
 	public void drawPointsBorder(){
 		batch.draw(pointsBorderTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetX - pointsBorderTex.getWidth(),
 				Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - pointsBorderTex.getHeight());
+	}
+
+	public void drawLoseMessage(){
+		if (hasLost){
+			batch.draw(loseTex,camera.position.x - cameraOffsetX,210 + camera.position.y - cameraOffsetY);
+		}
+	}
+
+	public void drawWinMessage(){
+		if (hasWon){
+			batch.draw(winTex,camera.position.x - cameraOffsetX,210 + camera.position.y - cameraOffsetY);
+		}
 	}
 }
