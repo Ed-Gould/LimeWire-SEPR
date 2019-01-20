@@ -159,6 +159,7 @@ public class Game extends ApplicationAdapter {
 						// Check if the play is next to the ship (for a valid attack)
 						if (getSelectedShip().nextToShip(newSelectedShip)){
 							// Successfully attack the ship
+							pointSystem.addPoints("ship");
 							getSelectedShip().decAttacksLeft();
 							deleteShip(newSelectedShip);
 						}
@@ -171,6 +172,7 @@ public class Game extends ApplicationAdapter {
 			if (coords.equals(derwentCollege.getCoords())){ // If Derwent is attacked
 				if (getSelectedShip().canAttack()){
 					if (getSelectedShip().nextToCoords(derwentCollege.getCoords())){
+						pointSystem.addPoints("college");
 						map.getSquare(derwentCollege.getCoords()).setTexture("l");
 					}
 				}
@@ -180,6 +182,7 @@ public class Game extends ApplicationAdapter {
 				if (getSelectedShip().canAttack()){
 					if (getSelectedShip().nextToCoords(vanbrughCollege.getCoords())){
 						map.getSquare(vanbrughCollege.getCoords()).setTexture("l");
+						pointSystem.addPoints("college");
 					}
 				}
 			}
@@ -311,7 +314,7 @@ public class Game extends ApplicationAdapter {
 				((Gdx.graphics.getHeight() - (Gdx.input.getY() - (int) (camera.position.y - cameraOffsetY))) / squareSize));
 	}
 
-	public void drawAssets(){
+	public void drawAssets(){ // Draws all the assets
 		drawGrid();
 		drawMap();
         drawShips();
@@ -321,7 +324,7 @@ public class Game extends ApplicationAdapter {
 		drawPoints();
 	}
 
-	public void drawGrid(){
+	public void drawGrid(){ // Draws the grid to the screen
         for (int i = 0; i < gridWidth; i++){
             for (int j = 0; j < gridHeight; j++){
                 batch.draw(gridTex, i * squareSize, j * squareSize);
@@ -329,7 +332,7 @@ public class Game extends ApplicationAdapter {
         }
     }
 
-    public void drawMap(){
+    public void drawMap(){ // Draws the map to the screen
 		for (int i = 0; i < gridWidth; i++){
 			for (int j = 0; j < gridHeight; j++){
 				batch.draw(map.getGrid()[i][j].getTexture(), i * squareSize + 1, j * squareSize + 1);
@@ -337,7 +340,7 @@ public class Game extends ApplicationAdapter {
 		}
 	}
 
-    public void drawShips(){
+    public void drawShips(){ // Draws ships to the screen
         for (Ship ship: playerShips){
 			batch.draw(ship.getTexture(), ship.getX() * squareSize + 1, ship.getY() * squareSize + 1);
 		}
@@ -347,7 +350,7 @@ public class Game extends ApplicationAdapter {
 		}
     }
 
-    public void drawMoveDisplay(){
+    public void drawMoveDisplay(){ // Draws available moves for a selected ship
     	// If the player has a ship selected, show the possible squares the ship can move to
 		if (showSelection && isShipSelected && turn == 0) {
 			for (Coords square : moveSquares) {
@@ -356,7 +359,7 @@ public class Game extends ApplicationAdapter {
 		}
 	}
 
-    public void drawSelectionSquare(){
+    public void drawSelectionSquare(){ // Draws the selection square to the screen
         if (showSelection){
             batch.draw(selectionTex, selectionX * squareSize, selectionY * squareSize);
         }
@@ -373,10 +376,10 @@ public class Game extends ApplicationAdapter {
 		}
 	}
 
-	public void drawPoints() {
-		int currentDigit = 1;
-		char[] points = String.valueOf(pointSystem.getPoints()).toCharArray();
-		for (int i = points.length-1; i >= 0 ; i--) {
+	public void drawPoints() { // Draws the players points to the screen
+		int currentDigit = 1; // Track current digit to print
+		char[] points = String.valueOf(pointSystem.getPoints()).toCharArray(); // Convert to char array to read from
+		for (int i = points.length-1; i >= 0 ; i--) { // Print values in reverse order
 			if (points[i] == "0".charAt(0)) {
 				batch.draw(zeroTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
 			}
