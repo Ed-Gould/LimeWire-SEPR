@@ -2,6 +2,8 @@ package com.limewire.game.data;
 
 import com.badlogic.gdx.graphics.Texture;
 
+import java.util.ArrayList;
+
 public class Ship {
     private int x, y, health, moveSpeed, movesLeft, attacksPerTurn, attacksLeft;
     private String team;
@@ -31,7 +33,17 @@ public class Ship {
         }
     }
 
-    public boolean nextToCoords(Coords coords){ // Checks if the ship is next to a coordinate
+    public boolean nextToBuilding(ArrayList<Coords> coordsList){ // Checks if the ship is next to a building
+        for (Coords coords: coordsList){
+            // If the squares are greater than 1 space apart on the x or y axis:
+            if (nextToCoords(coords)){
+                return true;
+            }
+        }
+        return false;
+    }
+
+    public boolean nextToCoords(Coords coords){
         if (Math.abs(this.x - coords.getX()) > 1 || Math.abs(this.y - coords.getY()) > 1){
             return false;
         }

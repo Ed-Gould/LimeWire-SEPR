@@ -10,8 +10,8 @@ public class DesktopLauncher {
 		LwjglApplicationConfiguration config = new LwjglApplicationConfiguration();
 		config.title = "LimeWire";
 		config.addIcon("Logo.png", Files.FileType.Internal);
-		config.width = 1600;
-		config.height = 900;
+		config.width = 640;
+		config.height = 640;
 		config.resizable = false;
 		new LwjglApplication(new Game(), config);
 	}

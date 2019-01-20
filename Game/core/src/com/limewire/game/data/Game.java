@@ -26,8 +26,8 @@ public class Game extends ApplicationAdapter {
 
 	// Constants about the board size, and image dimensions of squares that make up the board.
 	public static final int squareSize = 34; // Pixel size of a square (including the black border)
-	public static final int gridWidth = 16; // Width of the grid
-	public static final int gridHeight = 16; // Height of the grid
+	public static final int gridWidth = 32; // Width of the grid
+	public static final int gridHeight = 32; // Height of the grid
 
 	// Selection variables
 	private int selectionX = 0;
@@ -88,7 +88,7 @@ public class Game extends ApplicationAdapter {
 
 
 		// Create data structures for map and contents
-		map = new Map("Maps/16x16Map.txt");
+		map = new Map("Maps/32x32Map.txt");
 		playerShips = new ArrayList<Ship>();
 		enemyShips = new ArrayList<Ship>();
 
@@ -136,6 +136,9 @@ public class Game extends ApplicationAdapter {
         moveSquares = getMoveSquares();
         isShipSelected = isShipSelected();
         handleInput();
+
+		camera.position.x = MathUtils.clamp(camera.position.x, camera.viewportWidth / 2f, (float) squareSize*gridWidth - cameraOffsetX);
+		camera.position.y = MathUtils.clamp(camera.position.y, camera.viewportHeight / 2f, (float) squareSize*gridHeight - cameraOffsetY);
     }
 
 	public void handleSelection(){
@@ -281,11 +284,12 @@ public class Game extends ApplicationAdapter {
 		}
 
 		else {
-			for (Ship ship : enemyShips) {
-				EnemyShipAI enemyShipAI = new EnemyShipAI(ship, map);
+			for (int i = 0; i < enemyShips.size(); i++) {
+				EnemyShipAI enemyShipAI = new EnemyShipAI(enemyShips.get(i), map);
 				if (enemyShipAI.isNearAShip()) {
 					Ship shipDestroyed = enemyShipAI.attackEnemyShip();
 					deleteShip(shipDestroyed);
+					continue;
 				}
 			}
 		}
@@ -319,13 +323,15 @@ public class Game extends ApplicationAdapter {
 		}
 
 		if (Gdx.input.justTouched() && Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
-			handleSelection();
+			if ((Gdx.input.getX() <= gridWidth * squareSize) &&
+					(Gdx.input.getY() >= Gdx.graphics.getHeight() - gridHeight * squareSize)) {
+				handleSelection();
+			}
 		}
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){ // Press Enter to change turn
+		if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)) { // Press Enter to change turn
 			changeTurnNum();
 		}
-
 	}
 
 	public Coords getGridLocation(){ // Returns the coordinates of the mouse in the grid
@@ -387,11 +393,13 @@ public class Game extends ApplicationAdapter {
     public void drawTurn(){
 		// If it is the players turn, display the player turn indicator
 		if (turn == 0){
-			batch.draw(pTurnTex, 0, Gdx.graphics.getHeight() - 24);
+			batch.draw(pTurnTex, camera.position.x - cameraOffsetY,
+					camera.position.y - cameraOffsetY + Gdx.graphics.getHeight() - 24);
 		}
 		// Else display enemy turn indicator
 		else{
-			batch.draw(eTurnTex, 0,Gdx.graphics.getHeight() - 24);
+			batch.draw(eTurnTex, camera.position.x - cameraOffsetY,
+					camera.position.y - cameraOffsetY + Gdx.graphics.getHeight() - 24);
 		}
 	}
 
@@ -400,43 +408,53 @@ public class Game extends ApplicationAdapter {
 		char[] points = String.valueOf(pointSystem.getPoints()).toCharArray(); // Convert to char array to read from
 		for (int i = points.length-1; i >= 0 ; i--) { // Print values in reverse order
 			if (points[i] == "0".charAt(0)) {
-				batch.draw(zeroTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+				batch.draw(zeroTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "1".charAt(0)) {
-				batch.draw(oneTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+				batch.draw(oneTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "2".charAt(0)) {
-				batch.draw(twoTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+				batch.draw(twoTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "3".charAt(0)) {
-				batch.draw(threeTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+				batch.draw(threeTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "4".charAt(0)) {
-				batch.draw(fourTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+				batch.draw(fourTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "5".charAt(0)) {
-				batch.draw(fiveTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+				batch.draw(fiveTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "6".charAt(0)) {
-				batch.draw(sixTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+				batch.draw(sixTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "7".charAt(0)) {
-				batch.draw(sevenTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+				batch.draw(sevenTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit
+						, Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "8".charAt(0)) {
-				batch.draw(eightTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+				batch.draw(eightTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "9".charAt(0)) {
-				batch.draw(nineTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+				batch.draw(nineTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 			currentDigit += 1;
 		}

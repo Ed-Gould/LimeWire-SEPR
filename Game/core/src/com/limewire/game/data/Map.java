@@ -91,7 +91,6 @@ public class Map {
                 visitedSquares.add(square);
                 newSquares.remove(square);
 
-                // Check each square the ship can potentially move to from the current square
                 Set<Coords> moveSquares = new HashSet<Coords>();
                 moveSquares.add(new Coords(square.getX() - 1, square.getY()));
                 moveSquares.add(new Coords(square.getX() + 1, square.getY()));
