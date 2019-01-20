@@ -21,7 +21,6 @@ public class EnemyShipAI {
 
     public boolean isNearAShip(){
         for(Coords possibleMove : possibleMove){
-
             if(map.getGrid()[possibleMove.x][possibleMove.y].ship != null){
                 if(! map.getShip(possibleMove).getTeam().equals(ship.getTeam())){
                     this.nearestShip.setX(possibleMove.x);

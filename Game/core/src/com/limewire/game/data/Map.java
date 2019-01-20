@@ -16,6 +16,7 @@ public class Map {
     public Map(String fileName) {
         grid = MapReader.getMap(fileName);
 
+        // Set coordinates for colleges and departments
         for (int i = 0; i < Game.gridWidth; i++){
             for (int j = 0; j < Game.gridHeight; j++){
                 if (grid[i][j].getType().equals("d")){
@@ -74,21 +75,23 @@ public class Map {
         return true;
     }
 
-    public Set<Coords> getPossibleMoves(Ship ship) {
-        Set<Coords> possibleSquares = new HashSet<Coords>();
-        Set<Coords> visitedSquares = new HashSet<Coords>();
-        Set<Coords> newSquares = new HashSet<Coords>();
+    public Set<Coords> getPossibleMoves(Ship ship) { // Iteratively search for moves
+        Set<Coords> possibleSquares = new HashSet<Coords>(); // The list of squares the ship can move to
+        Set<Coords> visitedSquares = new HashSet<Coords>(); // The list of already visited squares
+        Set<Coords> newSquares = new HashSet<Coords>(); // The list of new squares found each iteration of the search loop
         newSquares.add(ship.getCoords());
 
         int movesLeft = ship.getMovesLeft() + 1;
 
+        // Continue searching for new squares if there are new squares found and the ship still has moves left
         while (newSquares.size() > 0 && movesLeft != 0) {
             Set<Coords> currentSquares = new HashSet<Coords>(newSquares);
-            for (Coords square : currentSquares) {
+            for (Coords square : currentSquares) { // Iterate through each new square
                 possibleSquares.add(square);
                 visitedSquares.add(square);
                 newSquares.remove(square);
 
+                // Check each square the ship can potentially move to from the current square
                 Set<Coords> moveSquares = new HashSet<Coords>();
                 moveSquares.add(new Coords(square.getX() - 1, square.getY()));
                 moveSquares.add(new Coords(square.getX() + 1, square.getY()));

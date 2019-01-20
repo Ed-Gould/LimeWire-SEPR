@@ -181,8 +181,27 @@ public class Game extends ApplicationAdapter {
 			if (coords.equals(vanbrughCollege.getCoords())){ // If Vanbrugh is attacked
 				if (getSelectedShip().canAttack()){
 					if (getSelectedShip().nextToCoords(vanbrughCollege.getCoords())){
-						map.getSquare(vanbrughCollege.getCoords()).setTexture("l");
 						pointSystem.addPoints("college");
+						map.getSquare(vanbrughCollege.getCoords()).setTexture("l");
+					}
+				}
+			}
+
+			// Handle cases where a department is selected
+			if (coords.equals(historyDept.getCoords())){ // If History Dept is attacked
+				if (getSelectedShip().canAttack()){
+					if (getSelectedShip().nextToCoords(historyDept.getCoords())){
+						pointSystem.addPoints("department");
+						map.getSquare(historyDept.getCoords()).setTexture("l");
+					}
+				}
+			}
+
+			if (coords.equals(physicsDept.getCoords())){ // If Physics Dept is attacked
+				if (getSelectedShip().canAttack()){
+					if (getSelectedShip().nextToCoords(physicsDept.getCoords())){
+						pointSystem.addPoints("department");
+						map.getSquare(physicsDept.getCoords()).setTexture("l");
 					}
 				}
 			}
@@ -303,7 +322,7 @@ public class Game extends ApplicationAdapter {
 			handleSelection();
 		}
 
-		if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){
+		if (Gdx.input.isKeyJustPressed(Input.Keys.ENTER)){ // Press Enter to change turn
 			changeTurnNum();
 		}
 
@@ -368,11 +387,11 @@ public class Game extends ApplicationAdapter {
     public void drawTurn(){
 		// If it is the players turn, display the player turn indicator
 		if (turn == 0){
-			batch.draw(pTurnTex, gridWidth * squareSize - 24,gridHeight * squareSize - 24);
+			batch.draw(pTurnTex, 0, Gdx.graphics.getHeight() - 24);
 		}
 		// Else display enemy turn indicator
 		else{
-			batch.draw(eTurnTex, gridWidth * squareSize - 24,gridHeight * squareSize - 24);
+			batch.draw(eTurnTex, 0,Gdx.graphics.getHeight() - 24);
 		}
 	}
 

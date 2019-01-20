@@ -17,22 +17,28 @@ public class Ship {
         this.attacksLeft = attacksPerTurn;
         this.team = team;
 
+        // Set the texture depending on the team
         if (team.equals("derwent")){
             this.texture = new Texture("derwentShip.png");
         }
-        else{
+
+        else if (team.equals("james")){
             this.texture = new Texture("jamesShip.png");
+        }
+
+        else if (team.equals("vanbrugh")){
+            this.texture = new Texture("vanbrughShip.png");
         }
     }
 
-    public boolean nextToCoords(Coords coords){
+    public boolean nextToCoords(Coords coords){ // Checks if the ship is next to a coordinate
         if (Math.abs(this.x - coords.getX()) > 1 || Math.abs(this.y - coords.getY()) > 1){
             return false;
         }
         return !(Math.abs(this.x - coords.getX()) > 0 && Math.abs(this.y - coords.getY()) > 0);
     }
 
-    public boolean nextToShip(Ship otherShip){
+    public boolean nextToShip(Ship otherShip){ // Checks if the ship is next to another ship
         // If the ships are greater than 1 space apart on the x or y axis:
         if (Math.abs(this.x - otherShip.x) > 1 || Math.abs(this.y - otherShip.y) > 1){
             return false;

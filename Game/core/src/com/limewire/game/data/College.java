@@ -50,26 +50,4 @@ public class College {
     public void setHealth(int health) {
         this.health = health;
     }
-
-    /*
-    public void setShips(){
-        //ShipList shipList = new ShipList(...);
-        while(numOfShips>0){
-            numOfShips -= 1;
-            setShips();
-        }
-    }
-
-
-    public void setTeam()
-    {
-        if(conquer == false){
-            this.name = name;
-        }
-        else{
-            this.team = "player";
-        }
-    }
-*/
-
 }

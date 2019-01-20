@@ -12,7 +12,7 @@ public class Square {
     // e.g. Any ships, events, or buildings.
     public Square(String type){
         this.type = type;
-        this.ship = null;
+        this.ship = null; // Initially assume there is no ship, set these after
         setTexture(type);
         setPathable(type);
     }
@@ -21,7 +21,7 @@ public class Square {
         return this.texture;
     }
 
-    public void setTexture(String type){
+    public void setTexture(String type){ // Sets the texture depending on the type of the square
         if (type.equals("w")){ // Water Squares
             this.texture =  new Texture("32water.png");
         }
@@ -49,7 +49,7 @@ public class Square {
         return this.type;
     }
 
-    public void setPathable(String type){
+    public void setPathable(String type){ // If the square is water, allow ships to move through it
         if (type.equals("w")){
             this.isPathable = true;
         }
