@@ -106,13 +106,23 @@ public class Game extends ApplicationAdapter {
 		playerShips.add(new Ship(6,13,1,"james", 4));
 		playerShips.add(new Ship(7,10,1,"james", 4));
 		playerShips.add(new Ship(6,9,1,"james", 4));
-		enemyShips.add(new Ship(6,2, 1, "derwent", 3));
-		enemyShips.add(new Ship(6,6, 1, "derwent", 3));
-		enemyShips.add(new Ship(8,4, 1, "derwent", 3));
+		playerShips.add(new Ship(6,11,1,"james", 4));
+
+		enemyShips.add(new Ship(25,13, 1, "derwent", 3));
+		enemyShips.add(new Ship(24,12, 1, "derwent", 3));
+		enemyShips.add(new Ship(23,11, 1, "derwent", 3));
+		enemyShips.add(new Ship(24,10, 1, "derwent", 3));
+		enemyShips.add(new Ship(23,14, 1, "derwent", 3));
+
+		enemyShips.add(new Ship(7, 25, 1, "vanbrugh", 3));
+		enemyShips.add(new Ship(8, 24, 1, "vanbrugh", 3));
+		enemyShips.add(new Ship(7, 23, 1, "vanbrugh", 3));
+		enemyShips.add(new Ship(9, 23, 1, "vanbrugh", 3));
+		enemyShips.add(new Ship(5, 25, 1, "vanbrugh", 3));
 
 		// Add the colleges
 		jamesCollege = new College("james", map.getJamesCoords(), 1, playerShips);
-		derwentCollege = new College("derwent", map.getDerwentCoords(), 1, enemyShips);
+		derwentCollege = new College("derwent", map.getDerwentCoords(), 1, new ArrayList<Ship>());
 		vanbrughCollege = new College("vanbrugh", map.getVanbrughCoords(), 1, new ArrayList<Ship>());
 
 		// Add the departments
