@@ -38,10 +38,10 @@ public class Square {
             this.texture = new Texture("32vanbrughCollege.png");
         }
         else if (type.equals("h")){ // History department
-            this.texture = new Texture("water1.png");
+            this.texture = new Texture("32historyDepartment.png");
         }
         else if (type.equals("p")){ // Physics department
-            this.texture = new Texture("water2.png");
+            this.texture = new Texture("32physicsDepartment.png");
         }
     }
 

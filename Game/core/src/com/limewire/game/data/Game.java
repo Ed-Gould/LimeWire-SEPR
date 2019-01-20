@@ -93,12 +93,13 @@ public class Game extends ApplicationAdapter {
 		enemyShips = new ArrayList<Ship>();
 
 		// Add some placeholder ships (for testing)
-		playerShips.add(new Ship(0,0,1,"james"));
-		playerShips.add(new Ship(1,0,1,"james"));
-		playerShips.add(new Ship(2,0,1,"james"));
-		enemyShips.add(new Ship(6,2, 1, "derwent"));
-		enemyShips.add(new Ship(6,6, 1, "derwent"));
-		enemyShips.add(new Ship(8,4, 1, "derwent"));
+		playerShips.add(new Ship(7,12,1,"james", 4));
+		playerShips.add(new Ship(6,13,1,"james", 4));
+		playerShips.add(new Ship(7,10,1,"james", 4));
+		playerShips.add(new Ship(6,9,1,"james", 4));
+		enemyShips.add(new Ship(6,2, 1, "derwent", 3));
+		enemyShips.add(new Ship(6,6, 1, "derwent", 3));
+		enemyShips.add(new Ship(8,4, 1, "derwent", 3));
 
 		// Add the colleges
 		jamesCollege = new College("james", map.getJamesCoords(), 1, playerShips);
@@ -196,6 +197,10 @@ public class Game extends ApplicationAdapter {
 					if (getSelectedShip().nextToCoords(historyDept.getCoords())){
 						pointSystem.addPoints("department");
 						map.getSquare(historyDept.getCoords()).setTexture("l");
+						// Upgrade ships: Give +1 attack per turn
+						for (Ship ship: playerShips){
+							ship.increaseAttackPerTurn(1);
+						}
 					}
 				}
 			}
@@ -205,6 +210,10 @@ public class Game extends ApplicationAdapter {
 					if (getSelectedShip().nextToCoords(physicsDept.getCoords())){
 						pointSystem.addPoints("department");
 						map.getSquare(physicsDept.getCoords()).setTexture("l");
+						// Upgrade ships: Give +1 move speed
+						for (Ship ship: playerShips){
+							ship.increaseSpeed(1);
+						}
 					}
 				}
 			}

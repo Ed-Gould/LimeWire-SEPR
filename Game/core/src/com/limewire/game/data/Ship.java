@@ -9,11 +9,11 @@ public class Ship {
     private String team;
     private Texture texture;
 
-    public Ship(int x, int y, int health, String team) {
+    public Ship(int x, int y, int health, String team, int speed) {
         this.x = x;
         this.y = y;
         this.health = health;
-        this.moveSpeed = 3;
+        this.moveSpeed = speed;
         this.movesLeft = moveSpeed;
         this.attacksPerTurn = 1;
         this.attacksLeft = attacksPerTurn;
@@ -78,6 +78,9 @@ public class Ship {
         return new Coords(x, y);
     }
 
+    public void increaseSpeed(int speedIncrease){ // Increase ship speed
+        this.moveSpeed += speedIncrease;
+    }
     public int getMoveSpeed(){
         return this.moveSpeed;
     }
@@ -92,6 +95,10 @@ public class Ship {
 
     public void decMovesLeft(int n){ // Decrement moves left by n
         this.movesLeft -= n;
+    }
+
+    public void increaseAttackPerTurn(int attackIncrease){ // Give the ship more attacks
+        this.attacksPerTurn += attackIncrease;
     }
 
     public int getAttacksPerTurn(){
