@@ -6,16 +6,18 @@ import java.util.ArrayList;
 
 public class Ship {
     private int x, y, health, moveSpeed, movesLeft, attacksPerTurn, attacksLeft;
+    private boolean hasSpeedUpgrade;
     private String team;
     private Texture texture;
 
-    public Ship(int x, int y, int health, String team, int speed) {
+    public Ship(int x, int y, int health, String team, int speed, int attacksPerTurn) {
         this.x = x;
         this.y = y;
         this.health = health;
         this.moveSpeed = speed;
         this.movesLeft = moveSpeed;
-        this.attacksPerTurn = 1;
+        this.hasSpeedUpgrade = false;
+        this.attacksPerTurn = attacksPerTurn;
         this.attacksLeft = attacksPerTurn;
         this.team = team;
 
@@ -33,15 +35,6 @@ public class Ship {
         }
     }
 
-    public boolean nextToBuilding(ArrayList<Coords> coordsList){ // Checks if the ship is next to a building
-        for (Coords coords: coordsList){
-            // If the squares are greater than 1 space apart on the x or y axis:
-            if (nextToCoords(coords)){
-                return true;
-            }
-        }
-        return false;
-    }
 
     public boolean nextToCoords(Coords coords){
         if (Math.abs(this.x - coords.getX()) > 1 || Math.abs(this.y - coords.getY()) > 1){
@@ -81,6 +74,7 @@ public class Ship {
     public void increaseSpeed(int speedIncrease){ // Increase ship speed
         this.moveSpeed += speedIncrease;
     }
+
     public int getMoveSpeed(){
         return this.moveSpeed;
     }

@@ -34,7 +34,7 @@ public class ShipList {
             int x = XCoordinate.nextInt();
             Random YCoordinate = new Random(Game.gridHeight);
             int y = YCoordinate.nextInt();
-            Ship ship = new Ship(x,y,health,team, 3);
+            Ship ship = new Ship(x,y,health,team, 3, 1);
             addShip(ship);
         }
     }

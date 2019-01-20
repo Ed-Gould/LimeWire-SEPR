@@ -45,6 +45,9 @@ public class Game extends ApplicationAdapter {
 
 	// Game logic variables
 	int turn = 0; // 0 means player turn, 1 & 2 are other colleges
+	int maxShips = 8;
+	int speedBonus = 0;
+	int attackBonus = 0;
 
 	// Setup point system
 	private PointSystem pointSystem = new PointSystem("player");
@@ -102,23 +105,23 @@ public class Game extends ApplicationAdapter {
 		enemyShips = new ArrayList<Ship>();
 
 		// Add some placeholder ships (for testing)
-		playerShips.add(new Ship(7,12,1,"james", 4));
-		playerShips.add(new Ship(6,13,1,"james", 4));
-		playerShips.add(new Ship(7,10,1,"james", 4));
-		playerShips.add(new Ship(6,9,1,"james", 4));
-		playerShips.add(new Ship(6,11,1,"james", 4));
+		playerShips.add(new Ship(7,12,1,"james", 3, 1));
+		playerShips.add(new Ship(6,13,1,"james", 3, 1));
+		playerShips.add(new Ship(7,10,1,"james", 3, 1));
+		playerShips.add(new Ship(6,9,1,"james", 3, 1));
+		playerShips.add(new Ship(6,11,1,"james", 3,1));
 
-		enemyShips.add(new Ship(25,13, 1, "derwent", 3));
-		enemyShips.add(new Ship(24,12, 1, "derwent", 3));
-		enemyShips.add(new Ship(23,11, 1, "derwent", 3));
-		enemyShips.add(new Ship(24,10, 1, "derwent", 3));
-		enemyShips.add(new Ship(23,14, 1, "derwent", 3));
+		enemyShips.add(new Ship(25,13, 1, "derwent", 3, 1));
+		enemyShips.add(new Ship(24,12, 1, "derwent", 3, 1));
+		enemyShips.add(new Ship(23,11, 1, "derwent", 3, 1));
+		enemyShips.add(new Ship(24,10, 1, "derwent", 3, 1));
+		enemyShips.add(new Ship(23,14, 1, "derwent", 3, 1));
 
-		enemyShips.add(new Ship(7, 25, 1, "vanbrugh", 3));
-		enemyShips.add(new Ship(8, 24, 1, "vanbrugh", 3));
-		enemyShips.add(new Ship(7, 23, 1, "vanbrugh", 3));
-		enemyShips.add(new Ship(9, 23, 1, "vanbrugh", 3));
-		enemyShips.add(new Ship(5, 25, 1, "vanbrugh", 3));
+		enemyShips.add(new Ship(7, 25, 1, "vanbrugh", 3, 1));
+		enemyShips.add(new Ship(8, 24, 1, "vanbrugh", 3, 1));
+		enemyShips.add(new Ship(7, 23, 1, "vanbrugh", 3, 1));
+		enemyShips.add(new Ship(9, 23, 1, "vanbrugh", 3, 1));
+		enemyShips.add(new Ship(5, 25, 1, "vanbrugh", 3, 1));
 
 		// Add the colleges
 		jamesCollege = new College("james", map.getJamesCoords(), 1, playerShips);
@@ -176,9 +179,6 @@ public class Game extends ApplicationAdapter {
 	public void handleSelection(){
 		// Get the most recent coordinates the player clicked on
 		Coords coords = getGridLocation();
-		System.out.print(coords.x);
-		System.out.print(", ");
-		System.out.println(coords.y);
 		// Handle cases where a ship is selected
 		if (isShipSelected() && turn == 0){
 			// Move the ship to a new location
@@ -235,6 +235,7 @@ public class Game extends ApplicationAdapter {
 						// Upgrade ships: Give +1 attack per turn
 						for (Ship ship: playerShips){
 							ship.increaseAttackPerTurn(1);
+							attackBonus = 1;
 						}
 					}
 				}
@@ -248,6 +249,7 @@ public class Game extends ApplicationAdapter {
 						// Upgrade ships: Give +1 move speed
 						for (Ship ship: playerShips){
 							ship.increaseSpeed(1);
+							speedBonus = 1;
 						}
 					}
 				}
@@ -319,8 +321,40 @@ public class Game extends ApplicationAdapter {
 		return new HashSet<Coords>();
 	}
 
+	public int getEnemyShipCount(String team){
+		int count = 0;
+		for (Ship ship : enemyShips){
+			if (ship.getTeam().equals(team)){
+				count += 1;
+			}
+		}
+		return count;
+	}
+
+	public void createNewShips() {
+		if (playerShips.size() < maxShips) {
+			Ship newShip = new Ship(6,11,1,"james", 3 + speedBonus, 1 + attackBonus);
+			playerShips.add(newShip);
+			map.setShip(newShip);
+		}
+
+		if (getEnemyShipCount("derwent") < maxShips) {
+			Ship newShip = new Ship(24,11,1,"derwent", 3, 1);
+			enemyShips.add(newShip);
+			map.setShip(newShip);
+		}
+
+		if (getEnemyShipCount("vanbrugh") < maxShips) {
+			Ship newShip = new Ship(7,24,1,"vanbrugh", 3, 1);
+			enemyShips.add(newShip);
+			map.setShip(newShip);
+		}
+	}
+
+
 	public void startNewTurn(){ // Reset variables such as moves/attacks left for ships
 		if (turn == 0) {
+			createNewShips();
 			for (Ship ship : playerShips) {
 				ship.setMovesLeft(ship.getMoveSpeed());
 				ship.setAttacksLeft(ship.getAttacksPerTurn());
