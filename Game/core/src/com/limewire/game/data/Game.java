@@ -9,6 +9,7 @@ import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
+import com.badlogic.gdx.utils.CharArray;
 
 import java.awt.*;
 import java.util.ArrayList;
@@ -372,7 +373,50 @@ public class Game extends ApplicationAdapter {
 		}
 	}
 
-	public void drawPoints(){
-    	batch.draw(zeroTex, Gdx.graphics.getWidth() - 13, Gdx.graphics.getHeight() - 23);
+	public void drawPoints() {
+		int currentDigit = 1;
+		char[] points = String.valueOf(pointSystem.getPoints()).toCharArray();
+		for (int i = points.length-1; i >= 0 ; i--) {
+			if (points[i] == "0".charAt(0)) {
+				batch.draw(zeroTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+			}
+
+			else if (points[i] == "1".charAt(0)) {
+				batch.draw(oneTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+			}
+
+			else if (points[i] == "2".charAt(0)) {
+				batch.draw(twoTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+			}
+
+			else if (points[i] == "3".charAt(0)) {
+				batch.draw(threeTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+			}
+
+			else if (points[i] == "4".charAt(0)) {
+				batch.draw(fourTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+			}
+
+			else if (points[i] == "5".charAt(0)) {
+				batch.draw(fiveTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+			}
+
+			else if (points[i] == "6".charAt(0)) {
+				batch.draw(sixTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+			}
+
+			else if (points[i] == "7".charAt(0)) {
+				batch.draw(sevenTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+			}
+
+			else if (points[i] == "8".charAt(0)) {
+				batch.draw(eightTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+			}
+
+			else if (points[i] == "9".charAt(0)) {
+				batch.draw(nineTex, Gdx.graphics.getWidth() - 14 * currentDigit, Gdx.graphics.getHeight() - 23);
+			}
+			currentDigit += 1;
+		}
 	}
 }

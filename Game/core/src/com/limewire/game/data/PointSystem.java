@@ -11,7 +11,7 @@ public class PointSystem {
     public PointSystem(String playerName){
         this.playerName = playerName;
         this.gold = 0;
-        this.points = 0;
+        this.points = 12345;
     }
 
 
