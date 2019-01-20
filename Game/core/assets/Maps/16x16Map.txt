@@ -2,10 +2,10 @@ w,w,w,w,w,l,l,w,w,w,w,w,w,w,w,w
 w,l,w,w,w,l,l,w,w,w,w,w,l,l,l,w
 w,l,l,w,w,l,w,w,l,l,w,w,w,l,w,w
 w,w,w,w,w,w,w,w,v,w,w,l,w,w,w,w
-w,w,w,l,w,w,l,w,w,w,l,l,w,w,w,w
+w,w,w,l,w,w,l,w,w,w,l,h,w,w,w,w
 w,w,w,l,l,w,w,w,w,w,w,l,w,w,l,w
 w,w,w,w,l,l,w,w,l,w,w,w,w,l,l,w
-w,l,l,w,w,w,w,l,l,l,w,w,w,w,w,w
+w,l,l,w,w,w,w,l,p,l,w,w,w,w,w,w
 w,l,j,w,w,w,w,w,w,l,l,w,w,w,w,w
 w,w,l,w,w,w,w,w,w,l,w,w,w,d,w,w
 w,w,w,w,w,l,w,l,w,w,w,w,l,l,w,w

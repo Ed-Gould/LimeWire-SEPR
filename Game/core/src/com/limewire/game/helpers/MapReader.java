@@ -28,14 +28,6 @@ public class MapReader {
                 row++;
             }
             in.close();
-
-            ///* Demonstration
-            for (int i = 0; i < Game.gridHeight; i++) {
-                for (int j = 0; j < Game.gridWidth; j++) {
-                    System.out.print(map[i][j]+" ");
-                }
-                System.out.println();
-            }//*/
         } catch (FileNotFoundException err) {
             System.out.println("File specified could not be found");
         }
@@ -57,11 +49,19 @@ public class MapReader {
     public static Square[][] getMap(String fileName){
         return convertMap(getRawMapData(fileName));
     }
-
+}
 
 /*    public static void main(String[] args) {
         MapReader mr = new MapReader();
         mr.getRawMapData("./Maps/8x8testMap.txt");
     }*/
-}
+
+/* Demonstration
+            for (int i = 0; i < Game.gridHeight; i++) {
+                for (int j = 0; j < Game.gridWidth; j++) {
+                    System.out.print(map[i][j]+" ");
+                }
+                System.out.println();
+            }*/
+
 

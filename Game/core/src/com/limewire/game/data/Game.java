@@ -36,6 +36,7 @@ public class Game extends ApplicationAdapter {
 	ArrayList<Ship> playerShips;
 	ArrayList<Ship> enemyShips;
 	College derwentCollege, jamesCollege;
+	Department historyDept, physicsDept;
 
 	// Game logic variables
 	int turn = 0; // 0 means player turn, 1 & 2 are other colleges
@@ -83,6 +84,10 @@ public class Game extends ApplicationAdapter {
 		jamesCollege = new College("james", map.getJamesCoords(), 1, playerShips);
 		derwentCollege = new College("derwent", map.getDerwentCoords(), 1, enemyShips);
 
+		// Add the departments
+		historyDept = new Department("history", map.getHistoryCoords(), 1);
+		physicsDept = new Department("history", map.getPhysicsCoords(), 1);
+
 		// Add data to map squares for where ships are
 		for (Ship ship: playerShips){
 			map.getGrid()[ship.getX()][ship.getY()].ship = ship;
@@ -115,7 +120,7 @@ public class Game extends ApplicationAdapter {
 		Coords coords = getGridLocation();
 
 		// Handle cases where a ship is selected
-		if (isShipSelected()){
+		if (isShipSelected() && turn == 0){
 			// Move the ship to a new location
 			if (map.isValidSquare(coords)){
 				moveSelectedShip(coords);
@@ -123,10 +128,9 @@ public class Game extends ApplicationAdapter {
 
 			// If the location contains an enemy ship (to attack)
 			else if (map.getShip(coords) != null){
-				System.out.println("attack");
 				Ship newSelectedShip = map.getShip(coords);
 				// If the new location contains an enemy ship
-				if (!newSelectedShip.getTeam().equals("player")){
+				if (!newSelectedShip.getTeam().equals("james")){
 					// If the ship can attack
 					if (getSelectedShip().canAttack()){
 						// Check if the play is next to the ship (for a valid attack)
@@ -177,8 +181,12 @@ public class Game extends ApplicationAdapter {
 
 	public void deleteShip(Ship ship){
 		map.deleteShip(ship.getCoords());
-		enemyShips.remove(ship);
-	}
+		if(ship.getTeam().equals("james")){
+			playerShips.remove(ship);
+		}
+		else{
+			enemyShips.remove(ship);
+		}	}
 
 	public boolean isShipSelected(){
 		for (Ship ship : playerShips){
@@ -208,9 +216,20 @@ public class Game extends ApplicationAdapter {
 	}
 
 	public void startNewTurn(){ // Reset variables such as moves/attacks left for ships
-		for (Ship ship: playerShips){
-			ship.setMovesLeft(ship.getMoveSpeed());
-			ship.setAttacksLeft(ship.getAttacksPerTurn());
+		if (turn == 0) {
+			for (Ship ship : playerShips) {
+				ship.setMovesLeft(ship.getMoveSpeed());
+				ship.setAttacksLeft(ship.getAttacksPerTurn());
+			}
+		}
+		else {
+			for (Ship ship : enemyShips) {
+				EnemyShipAI enemyShipAI = new EnemyShipAI(ship, map);
+				if (enemyShipAI.isNearAShip()) {
+					Ship shipDestroyed = enemyShipAI.attackEnemyShip();
+					deleteShip(shipDestroyed);
+				}
+			}
 		}
 	}
 
@@ -292,11 +311,11 @@ public class Game extends ApplicationAdapter {
     }
 
     public void drawMoveDisplay(){
-    	if (showSelection && isShipSelected) {
-            for (Coords square : moveSquares) {
-                batch.draw(moveDisplayTex, square.getX() * squareSize, square.getY() * squareSize);
-            }
-        }
+		if (showSelection && isShipSelected && turn == 0) {
+			for (Coords square : moveSquares) {
+				batch.draw(moveDisplayTex, square.getX() * squareSize, square.getY() * squareSize);
+			}
+		}
 	}
 
     public void drawSelectionSquare(){

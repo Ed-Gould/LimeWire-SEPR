@@ -22,20 +22,26 @@ public class Square {
     }
 
     public void setTexture(String type){
-        if (type.equals("w")){
+        if (type.equals("w")){ // Water Squares
             this.texture =  new Texture("32water.png");
         }
-        else if (type.equals("l")){
+        else if (type.equals("l")){ // Land squares
             this.texture = new Texture("32land.png");
         }
-        else if (type.equals("d")){
+        else if (type.equals("d")){ // Derwent college
             this.texture = new Texture("32derwentCollege.png");
         }
-        else if (type.equals("j")){
+        else if (type.equals("j")){ // James college
             this.texture = new Texture("32jamesCollege.png");
         }
-        else {
+        else if (type.equals("v")){ // Vanbrugh college
             this.texture = new Texture("32vanbrughCollege.png");
+        }
+        else if (type.equals("h")){ // History department
+            this.texture = new Texture("water1.png");
+        }
+        else if (type.equals("p")){ // Physics department
+            this.texture = new Texture("water2.png");
         }
     }
 

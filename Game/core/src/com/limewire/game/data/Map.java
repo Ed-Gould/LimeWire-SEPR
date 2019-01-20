@@ -11,7 +11,7 @@ import java.util.Set;
 
 public class Map {
     private Square[][] grid;
-    private Coords derwentCoords, jamesCoords, vanbrughCoords;
+    private Coords derwentCoords, jamesCoords, vanbrughCoords, historyCoords, physicsCoords;
 
     public Map(String fileName) {
         grid = MapReader.getMap(fileName);
@@ -29,10 +29,29 @@ public class Map {
                 else if (grid[i][j].getType().equals("v")){
                     vanbrughCoords = new Coords(i,j);
                 }
+
+                else if (grid[i][j].getType().equals("h")){
+                    historyCoords = new Coords(i,j);
+                }
+
+                else if (grid[i][j].getType().equals("p")){
+                    physicsCoords = new Coords(i,j);
+                }
             }
         }
     }
 
+    public boolean isValidForEnemy(Coords coordinates) {
+        // Check if the coordinates are in the bounds of the map
+        if (coordinates.getX() >= Game.gridWidth || coordinates.getX() < 0) {
+            return false;
+        }
+        if (coordinates.getY() >= Game.gridHeight || coordinates.getY() < 0) {
+            return false;
+        }
+        // Check if the square is pathable and not occupied
+        return grid[coordinates.getX()][coordinates.getY()].isPathable;
+    }
 
     public boolean isValidSquare(Coords coordinates) {
         // Check if the coordinates are in the bounds of the map
@@ -77,11 +96,25 @@ public class Map {
                 moveSquares.add(new Coords(square.getX(), square.getY() - 1));
 
                 for (Coords moveSquare : moveSquares) {
+                    if(ship.getTeam().equals("james")){
+                        if (isNewSquare(visitedSquares, moveSquare) && isValidSquare(moveSquare)) {
+                            newSquares.add(moveSquare);
+                        }
+                    }
+                    else {
+                        if (isNewSquare(visitedSquares, moveSquare) && isValidForEnemy(moveSquare)) {
+                            newSquares.add(moveSquare);
+                        }
+                    }
+                    visitedSquares.add(moveSquare);
+                }
+
+                /*for (Coords moveSquare : moveSquares) {
                     if (isNewSquare(visitedSquares, moveSquare) && isValidSquare(moveSquare)) {
                         newSquares.add(moveSquare);
                     }
                     visitedSquares.add(moveSquare);
-                }
+                }*/
             }
             movesLeft -= 1;
         }
@@ -118,5 +151,13 @@ public class Map {
 
     public Coords getVanbrughCoords() {
         return this.vanbrughCoords;
+    }
+
+    public Coords getHistoryCoords(){
+        return this.historyCoords;
+    }
+
+    public Coords getPhysicsCoords(){
+        return this.physicsCoords;
     }
 }
