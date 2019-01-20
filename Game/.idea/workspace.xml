@@ -1,7 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="b850c7ba-f198-48c7-b07b-5567bb09d423" name="Default" comment="" />
+    <list default="true" id="b850c7ba-f198-48c7-b07b-5567bb09d423" name="Default" comment="">
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/out/production/classes/com/limewire/game/data/Game.class" afterPath="$PROJECT_DIR$/core/out/production/classes/com/limewire/game/data/Game.class" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java" afterPath="$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java" />
+    </list>
     <ignored path="$PROJECT_DIR$/core/.gradle/" />
     <ignored path="$PROJECT_DIR$/core/build/" />
     <ignored path="$PROJECT_DIR$/.gradle/" />
@@ -134,8 +138,8 @@
       <file leaf-file-name="Game.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="354">
-              <caret line="41" column="43" lean-forward="false" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
+            <state relative-caret-position="1636">
+              <caret line="321" column="32" lean-forward="false" selection-start-line="321" selection-start-column="32" selection-end-line="321" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -1741,8 +1745,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/core/src/com/limewire/game/data/Game.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="354">
-          <caret line="41" column="43" lean-forward="false" selection-start-line="41" selection-start-column="43" selection-end-line="41" selection-end-column="43" />
+        <state relative-caret-position="1636">
+          <caret line="321" column="32" lean-forward="false" selection-start-line="321" selection-start-column="32" selection-end-line="321" selection-end-column="32" />
           <folding />
         </state>
       </provider>

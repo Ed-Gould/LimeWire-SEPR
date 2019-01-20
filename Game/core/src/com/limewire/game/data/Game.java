@@ -16,34 +16,36 @@ import java.util.HashSet;
 import java.util.Set;
 
 public class Game extends ApplicationAdapter {
-	SpriteBatch batch;
+	// Initialise camera and UI textures
+	private SpriteBatch batch;
 	private OrthographicCamera camera;
-	Texture gridTex, selectionTex, moveDisplayTex, pTurnTex, eTurnTex;
+	private Texture gridTex, selectionTex, moveDisplayTex, pTurnTex, eTurnTex;
 
-	int squareSize = 34; // Pixel size of a square (including the black border)
+	// Constants about the board size, and image dimensions of squares that make up the board.
+	public static final int squareSize = 34; // Pixel size of a square (including the black border)
 	public static final int gridWidth = 16; // Width of the grid
 	public static final int gridHeight = 16; // Height of the grid
 
 	// Selection variables
-	int selectionX = 0;
-	int selectionY = 0;
-	boolean showSelection = false;
-	boolean isShipSelected = false;
-	Set<Coords> moveSquares = new HashSet<Coords>();
+	private int selectionX = 0;
+	private int selectionY = 0;
+	private boolean showSelection = false;
+	private boolean isShipSelected = false;
+	private Set<Coords> moveSquares = new HashSet<Coords>();
 
 	// Map and contents variables
-	Map map;
-	ArrayList<Ship> playerShips;
-	ArrayList<Ship> enemyShips;
-	College derwentCollege, jamesCollege;
-	Department historyDept, physicsDept;
+	private Map map;
+	private ArrayList<Ship> playerShips;
+	private ArrayList<Ship> enemyShips;
+	private College derwentCollege, jamesCollege, vanbrughCollege;
+	private Department historyDept, physicsDept;
 
 	// Game logic variables
 	int turn = 0; // 0 means player turn, 1 & 2 are other colleges
 
 	// These variables are the offset of the camera to show the corner map in the bottom left of the screen
-	float cameraOffsetX;
-	float cameraOffsetY;
+	private float cameraOffsetX;
+	private float cameraOffsetY;
 
 
 
@@ -59,7 +61,7 @@ public class Game extends ApplicationAdapter {
 		batch = new SpriteBatch();
 
 
-		// Load textures
+		// Load UI textures
 		gridTex = new Texture("32gridSquare.png");
 		selectionTex = new Texture("32selection.png");
 		moveDisplayTex = new Texture("32moveDisplay.png");
@@ -83,6 +85,7 @@ public class Game extends ApplicationAdapter {
 		// Add the colleges
 		jamesCollege = new College("james", map.getJamesCoords(), 1, playerShips);
 		derwentCollege = new College("derwent", map.getDerwentCoords(), 1, enemyShips);
+		vanbrughCollege = new College("vanbrugh", map.getVanbrughCoords(), 1, new ArrayList<Ship>());
 
 		// Add the departments
 		historyDept = new Department("history", map.getHistoryCoords(), 1);
@@ -107,6 +110,7 @@ public class Game extends ApplicationAdapter {
 		camera.update();
 		batch.setProjectionMatrix(camera.combined);
 
+		// Draw textures
 		batch.begin();
 		drawAssets();
 		batch.end();
@@ -117,6 +121,7 @@ public class Game extends ApplicationAdapter {
     }
 
 	public void handleSelection(){
+		// Get the most recent coordinates the player clicked on
 		Coords coords = getGridLocation();
 
 		// Handle cases where a ship is selected
@@ -145,10 +150,18 @@ public class Game extends ApplicationAdapter {
 			}
 
 			// Handle cases where an enemy college is selected
-			if (coords.equals(derwentCollege.getCoords())){
+			if (coords.equals(derwentCollege.getCoords())){ // If Derwent is attacked
 				if (getSelectedShip().canAttack()){
 					if (getSelectedShip().nextToCoords(derwentCollege.getCoords())){
 						map.getSquare(derwentCollege.getCoords()).setTexture("l");
+					}
+				}
+			}
+
+			if (coords.equals(vanbrughCollege.getCoords())){ // If Vanbrugh is attacked
+				if (getSelectedShip().canAttack()){
+					if (getSelectedShip().nextToCoords(vanbrughCollege.getCoords())){
+						map.getSquare(vanbrughCollege.getCoords()).setTexture("l");
 					}
 				}
 			}
@@ -167,12 +180,16 @@ public class Game extends ApplicationAdapter {
 
 	public void moveSelectedShip(Coords coords) {
 		Ship ship = getSelectedShip();
-		for (Coords moveSquare : moveSquares) {
+		for (Coords moveSquare : moveSquares) { // Iterate through all the squares the ship can move to
+			// Check if the coordinates the ship can move to the square the player selected
 			if (coords.equals(moveSquare)) {
 				map.deleteShip(ship.getCoords());
+				// Decrease the number of moves the ship has left based on how far it traveled
 				ship.decMovesLeft(Math.abs(ship.getX()-coords.getX()) + Math.abs(ship.getY()-coords.getY()));
+				// Move the ship
 				ship.setX(coords.getX());
 				ship.setY(coords.getY());
+				// Update the ships location on the map
 				map.setShip(ship);
 				return;
 			}
@@ -188,7 +205,7 @@ public class Game extends ApplicationAdapter {
 			enemyShips.remove(ship);
 		}	}
 
-	public boolean isShipSelected(){
+	public boolean isShipSelected(){ // Check if the player has selected one of their ships
 		for (Ship ship : playerShips){
 			if (ship.getX() == selectionX && ship.getY() == selectionY && showSelection){
 				return true;
@@ -197,7 +214,7 @@ public class Game extends ApplicationAdapter {
 		return false;
 	}
 
-	public Ship getSelectedShip(){
+	public Ship getSelectedShip(){ // Return the selected ship (if one is selected)
 		for (Ship ship : playerShips){
 			if (ship.getX() == selectionX && ship.getY() == selectionY && showSelection){
 				return ship;
@@ -206,7 +223,7 @@ public class Game extends ApplicationAdapter {
 		return null;
 	}
 
-	public Set<Coords> getMoveSquares(){
+	public Set<Coords> getMoveSquares(){ // Returns a list of the squares the selected ship can move to
 		if (showSelection && isShipSelected()) {
 			if (getSelectedShip().getMovesLeft() > 0){
 				return map.getPossibleMoves(getSelectedShip());
@@ -222,6 +239,7 @@ public class Game extends ApplicationAdapter {
 				ship.setAttacksLeft(ship.getAttacksPerTurn());
 			}
 		}
+
 		else {
 			for (Ship ship : enemyShips) {
 				EnemyShipAI enemyShipAI = new EnemyShipAI(ship, map);
@@ -311,6 +329,7 @@ public class Game extends ApplicationAdapter {
     }
 
     public void drawMoveDisplay(){
+    	// If the player has a ship selected, show the possible squares the ship can move to
 		if (showSelection && isShipSelected && turn == 0) {
 			for (Coords square : moveSquares) {
 				batch.draw(moveDisplayTex, square.getX() * squareSize, square.getY() * squareSize);
