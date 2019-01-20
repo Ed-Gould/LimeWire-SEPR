@@ -21,7 +21,7 @@ public class Game extends ApplicationAdapter {
 	// Initialise camera and UI textures
 	private SpriteBatch batch;
 	private OrthographicCamera camera;
-	private Texture gridTex, selectionTex, moveDisplayTex, pTurnTex, eTurnTex;
+	private Texture gridTex, selectionTex, moveDisplayTex, pTurnTex, eTurnTex, pointsBorderTex;
 	private Texture oneTex, twoTex, threeTex, fourTex, fiveTex, sixTex, sevenTex, eightTex, nineTex, zeroTex;
 
 	// Constants about the board size, and image dimensions of squares that make up the board.
@@ -53,6 +53,8 @@ public class Game extends ApplicationAdapter {
 	private float cameraOffsetX;
 	private float cameraOffsetY;
 
+	private int cameraSpeed = 8; // Speed the camera moves
+
 
 
 	@Override
@@ -73,6 +75,7 @@ public class Game extends ApplicationAdapter {
 		moveDisplayTex = new Texture("32moveDisplay.png");
 		pTurnTex = new Texture("24playerTurn.png");
 		eTurnTex = new Texture("24enemyTurn.png");
+		pointsBorderTex = new Texture("pointsBorder.png");
 
 		// Load digit textures
 		oneTex = new Texture("one.png");
@@ -138,14 +141,19 @@ public class Game extends ApplicationAdapter {
         isShipSelected = isShipSelected();
         handleInput();
 
-		camera.position.x = MathUtils.clamp(camera.position.x, camera.viewportWidth / 2f, (float) squareSize*gridWidth - cameraOffsetX);
-		camera.position.y = MathUtils.clamp(camera.position.y, camera.viewportHeight / 2f, (float) squareSize*gridHeight - cameraOffsetY);
+        // Limit camera from leaving the map bounds
+		camera.position.x = MathUtils.clamp(camera.position.x, camera.viewportWidth / 2f,
+				squareSize*gridWidth - cameraOffsetX);
+		camera.position.y = MathUtils.clamp(camera.position.y, camera.viewportHeight / 2f,
+				squareSize*gridHeight - cameraOffsetY);
     }
 
 	public void handleSelection(){
 		// Get the most recent coordinates the player clicked on
 		Coords coords = getGridLocation();
-
+		System.out.print(coords.x);
+		System.out.print(", ");
+		System.out.println(coords.y);
 		// Handle cases where a ship is selected
 		if (isShipSelected() && turn == 0){
 			// Move the ship to a new location
@@ -316,19 +324,19 @@ public class Game extends ApplicationAdapter {
 
 	public void handleInput() {
 		if (Gdx.input.isKeyPressed(Input.Keys.LEFT)) {
-			camera.translate(-5, 0, 0);
+			camera.translate(-cameraSpeed, 0, 0);
 		}
 
 		if (Gdx.input.isKeyPressed(Input.Keys.RIGHT)) {
-			camera.translate(5, 0, 0);
+			camera.translate(cameraSpeed, 0, 0);
 		}
 
 		if (Gdx.input.isKeyPressed(Input.Keys.UP)) {
-			camera.translate(0, 5, 0);
+			camera.translate(0, cameraSpeed, 0);
 		}
 
 		if (Gdx.input.isKeyPressed(Input.Keys.DOWN)) {
-			camera.translate(0, -5, 0);
+			camera.translate(0, -cameraSpeed, 0);
 		}
 
 		if (Gdx.input.justTouched() && Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
@@ -355,6 +363,7 @@ public class Game extends ApplicationAdapter {
         drawMoveDisplay();
 		drawSelectionSquare();
 		drawTurn();
+		drawPointsBorder();
 		drawPoints();
 	}
 
@@ -417,55 +426,60 @@ public class Game extends ApplicationAdapter {
 		char[] points = String.valueOf(pointSystem.getPoints()).toCharArray(); // Convert to char array to read from
 		for (int i = points.length-1; i >= 0 ; i--) { // Print values in reverse order
 			if (points[i] == "0".charAt(0)) {
-				batch.draw(zeroTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+				batch.draw(zeroTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetX - 14 * currentDigit,
 						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "1".charAt(0)) {
-				batch.draw(oneTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+				batch.draw(oneTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetX - 14 * currentDigit,
 						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "2".charAt(0)) {
-				batch.draw(twoTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+				batch.draw(twoTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetX - 14 * currentDigit,
 						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "3".charAt(0)) {
-				batch.draw(threeTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+				batch.draw(threeTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetX - 14 * currentDigit,
 						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "4".charAt(0)) {
-				batch.draw(fourTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+				batch.draw(fourTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetX - 14 * currentDigit,
 						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "5".charAt(0)) {
-				batch.draw(fiveTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+				batch.draw(fiveTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetX - 14 * currentDigit,
 						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "6".charAt(0)) {
-				batch.draw(sixTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+				batch.draw(sixTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetX - 14 * currentDigit,
 						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "7".charAt(0)) {
-				batch.draw(sevenTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit
+				batch.draw(sevenTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetX - 14 * currentDigit
 						, Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "8".charAt(0)) {
-				batch.draw(eightTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+				batch.draw(eightTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetX - 14 * currentDigit,
 						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 
 			else if (points[i] == "9".charAt(0)) {
-				batch.draw(nineTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetY - 14 * currentDigit,
+				batch.draw(nineTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetX - 14 * currentDigit,
 						Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - 23);
 			}
 			currentDigit += 1;
 		}
+	}
+
+	public void drawPointsBorder(){
+		batch.draw(pointsBorderTex, Gdx.graphics.getWidth() + camera.position.x - cameraOffsetX - pointsBorderTex.getWidth(),
+				Gdx.graphics.getHeight() + camera.position.y - cameraOffsetY - pointsBorderTex.getHeight());
 	}
 }
