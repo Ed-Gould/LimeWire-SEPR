@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector3;
 
+import java.awt.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
@@ -20,6 +21,7 @@ public class Game extends ApplicationAdapter {
 	private SpriteBatch batch;
 	private OrthographicCamera camera;
 	private Texture gridTex, selectionTex, moveDisplayTex, pTurnTex, eTurnTex;
+	private Texture oneTex, twoTex, threeTex, fourTex, fiveTex, sixTex, sevenTex, eightTex, nineTex, zeroTex;
 
 	// Constants about the board size, and image dimensions of squares that make up the board.
 	public static final int squareSize = 34; // Pixel size of a square (including the black border)
@@ -42,6 +44,9 @@ public class Game extends ApplicationAdapter {
 
 	// Game logic variables
 	int turn = 0; // 0 means player turn, 1 & 2 are other colleges
+
+	//Setup point system
+	private PointSystem pointSystem = new PointSystem("player");
 
 	// These variables are the offset of the camera to show the corner map in the bottom left of the screen
 	private float cameraOffsetX;
@@ -67,6 +72,18 @@ public class Game extends ApplicationAdapter {
 		moveDisplayTex = new Texture("32moveDisplay.png");
 		pTurnTex = new Texture("24playerTurn.png");
 		eTurnTex = new Texture("24enemyTurn.png");
+
+		// Load digit textures
+		oneTex = new Texture("one.png");
+		twoTex = new Texture("two.png");
+		threeTex = new Texture("three.png");
+		fourTex = new Texture("four.png");
+		fiveTex = new Texture("five.png");
+		sixTex = new Texture("six.png");
+		sevenTex = new Texture("seven.png");
+		eightTex = new Texture("eight.png");
+		nineTex = new Texture("nine.png");
+		zeroTex = new Texture("zero.png");
 
 
 		// Create data structures for map and contents
@@ -300,6 +317,7 @@ public class Game extends ApplicationAdapter {
         drawMoveDisplay();
 		drawSelectionSquare();
 		drawTurn();
+		drawPoints();
 	}
 
 	public void drawGrid(){
@@ -352,5 +370,9 @@ public class Game extends ApplicationAdapter {
 		else{
 			batch.draw(eTurnTex, gridWidth * squareSize - 24,gridHeight * squareSize - 24);
 		}
+	}
+
+	public void drawPoints(){
+    	batch.draw(zeroTex, Gdx.graphics.getWidth() - 13, Gdx.graphics.getHeight() - 23);
 	}
 }
